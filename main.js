@@ -38,7 +38,7 @@
  *
  *
  *
- * Main Yatzy
+ * Main Yatzy{
  *
  * <Create game>
  * Game game = new Game;
@@ -73,4 +73,5 @@
  *
  * <End game>
  * Present scores and winner
+ * }
  */
