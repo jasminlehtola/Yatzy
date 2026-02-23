@@ -1,5 +1,3 @@
-
-
 /**
  * class Die
  * int value = 0;
