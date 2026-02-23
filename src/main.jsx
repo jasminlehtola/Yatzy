@@ -1,3 +1,13 @@
+// webkurssin malli:
+import ReactDOM from 'react-dom/client'
+
+import App from './App'
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+
+
+// alustuksen luoma malli:
+/*
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
@@ -8,3 +18,4 @@ createRoot(document.getElementById('root')).render(
     <App />
   </StrictMode>,
 )
+*/
