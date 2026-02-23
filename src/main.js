@@ -4,7 +4,7 @@ const Die = ({value, boolean}) => {
     //tähän kuvat nopista ja tilasta
 }
 
-
+    
 //Create a new game
 const NewGame = () => {
     
