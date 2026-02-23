@@ -1,3 +1,6 @@
+import Scoreboard from './scoreboard'
+
+
 const App = () => (
   <div class="game">
     <div class="menu">
@@ -15,6 +18,9 @@ const App = () => (
     </div>
     <div class="dice">
     </div>
+  <div>
+    <Scoreboard />
+  </div>
   </div>
 )
 

@@ -1,0 +1,23 @@
+/* Custom styles for the scoreboard component */
+.grid-table {
+  display: grid;
+  grid-template-columns: 2fr repeat(4, 1fr);
+  border: 1px solid #ccc;
+  
+}
+
+.cell {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.header {
+  background: #eee;
+  font-weight: bold;
+}
+
+.category {
+  text-align: left;
+  font-weight: 500;
+}
