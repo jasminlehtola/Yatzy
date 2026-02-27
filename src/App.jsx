@@ -1,4 +1,4 @@
-import Scoreboard from './scoreboard'
+import Scoreboard from './components/scoreboard'
 
 
 const App = () => (
@@ -15,12 +15,11 @@ const App = () => (
         </button>
     </div>
     <div class="scoreboard">
+      <Scoreboard />
     </div>
     <div class="dice">
     </div>
-  <div>
-    <Scoreboard />
-  </div>
+
   </div>
 )
 
