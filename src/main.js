@@ -11,12 +11,11 @@ Leaderboard-nappi
 ** Taulukko:
 taulukko[rivi][pelaaja]
 
-taulukko = [
-  [null, null, null, null, null],  // Ykköset
-  [null, null, null, null, null],  // Kakkoset
+scores = {
+  Ones:   [null, null, null, null],
+  Twos:   [null, null, null, null],
   ...
-  [null, null, null, null, null]   // Yatzy
-]
+}
 
 Tarkistus, onko kategoria jo käytetty (ei voi lisätä samaan kahteen kertaan):
 käytetyt_kategoriat[pelaaja]
