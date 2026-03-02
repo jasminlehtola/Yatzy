@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from 'react';
+import './index.css'
 import categories from './data/categories'
 import players from './data/players'
 
