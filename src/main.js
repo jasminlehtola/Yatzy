@@ -48,8 +48,8 @@ function rollDice() {
   setDice(prev =>
     prev.map(die =>
       die.held
-        ? die                              // pidetty → sama arvo
-        : { ...die, value: Math.floor(Math.random() * 6) + 1 }
+        ? die                              // True -> pidetään noppa
+        : { ...die, value: Math.floor(Math.random() * 6) + 1 } // False -> heitetään uudelleen
     )
   );
 }
