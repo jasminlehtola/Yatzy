@@ -35,8 +35,53 @@ käytetyt_kategoriat[pelaaja]
 
 
 
+// Dice is a component and it includes five dice. F means unlocked and T means locked. Unlocked dice are rerolled.
+const Die = ({value, boolean}) => {
+    //tähän kuvat nopista ja tilasta
+}
+
+    
+//Create a new game
+const NewGame = () => {
+    
+}
+
 
 /**
+ * 
+ * 
+ * 
+ * 
+ * Main Yatzy{
+ *
+ * <Create game>
+ * Game game = new Game;
+ *
+ * <Ask player names>
+ * game.addPlayer(input)
+ *
+ * <Create dice>
+ * Die one = new Die;
+ * ...
+ * Die five = new Die;
+ *
+ * <<Loop>>
+ *
+ * <Choose player>
+ * game.getPlayer
+ *
+ * <Throw dice>
+ * for (three times){
+ *     for (go through dice) {
+ *         if (die != locked) {
+ *             Die.throwDie;
+ *         }
+ *     }
+ *     ask to lock or rethrow
+ *     if (third throw OR wants to record score) {
+ *         select point category and setCategory = input
+ *     }
+ * }
  * class Die
  * int value = 0;
  * boolean locked = false;
@@ -76,36 +121,7 @@ käytetyt_kategoriat[pelaaja]
  *
  *
  *
- * Main Yatzy{
- *
- * <Create game>
- * Game game = new Game;
- *
- * <Ask player names>
- * game.addPlayer(input)
- *
- * <Create dice>
- * Die one = new Die;
- * ...
- * Die five = new Die;
- *
- * <<Loop>>
- *
- * <Choose player>
- * game.getPlayer
- *
- * <Throw dice>
- * for (three times){
- *     for (go through dice) {
- *         if (die != locked) {
- *             Die.throwDie;
- *         }
- *     }
- *     ask to lock or rethrow
- *     if (third throw OR wants to record score) {
- *         select point category and setCategory = input
- *     }
- * }
+ * 
  *
  * <</Loop>>
  *
