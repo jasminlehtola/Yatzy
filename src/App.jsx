@@ -1,5 +1,6 @@
+import Dice from './components/dice'
 import Scoreboard from './scoreboard'
-
+import dicesix from './assets/dice-six-faces-six.png'
 
 const App = () => (
   <div class="game">
@@ -14,9 +15,11 @@ const App = () => (
             <p>Leaderboard</p>
         </button>
     </div>
-    <div class="scoreboard">
-    </div>
     <div class="dice">
+      <Dice />
+  <img src = {dicesix} className = "dice"/>
+  </div>
+    <div class="scoreboard">
     </div>
   <div>
     <Scoreboard />

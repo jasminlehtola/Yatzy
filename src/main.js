@@ -35,33 +35,6 @@ käytetyt_kategoriat[pelaaja]
 
 
 
-
-const [dice, setDice] = useState([
-  { id: 1, value: 0, held: false },
-  { id: 2, value: 0, held: false },
-  { id: 3, value: 0, held: false },
-  { id: 4, value: 0, held: false },
-  { id: 5, value: 0, held: false },
-]);
-
-function rollDice() {
-  setDice(prev =>
-    prev.map(die =>
-      die.held
-        ? die                              // True -> pidetään noppa
-        : { ...die, value: Math.floor(Math.random() * 6) + 1 } // False -> heitetään uudelleen
-    )
-  );
-}
-
-function toggleHold(id) {
-  setDice(prev =>
-    prev.map(die =>
-      die.id === id ? { ...die, held: !die.held } : die
-    )
-  );
-}
-
 /**
  * 
  * 
