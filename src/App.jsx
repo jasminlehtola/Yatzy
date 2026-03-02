@@ -8,8 +8,8 @@ import players from './data/players'
 
 
 const App = () => {
-  const [players, setPlayers] = useState([]);
-  const [categories, setCategories] = useState([]);
+  //const [players, setPlayers] = useState([]) 
+  //const [categories, setCategories] = useState([])
   const [scores, setScores] = useState({})
 
 
@@ -31,6 +31,7 @@ const App = () => {
           players={players}
           categories={categories}
           scores={scores}
+          setScores={setScores}
         />
       </div>
       <div className="dice">
