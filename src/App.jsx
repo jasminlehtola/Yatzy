@@ -1,4 +1,5 @@
 
+
 import { useState, useEffect } from 'react';
 import './index.css'
 import categories from './data/categories'
@@ -47,6 +48,7 @@ const App = () => {
       </div>
 
     </div>
+
   )
 }
 
