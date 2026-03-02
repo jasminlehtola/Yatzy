@@ -1,15 +1,31 @@
 
-// Dice is a component and it includes five dice. F means unlocked and T means locked. Unlocked dice are rerolled.
-const Die = ({value, boolean}) => {
-    //tähän kuvat nopista ja tilasta
+
+
+const [dice, setDice] = useState([
+  { id: 1, value: 0, held: false },
+  { id: 2, value: 0, held: false },
+  { id: 3, value: 0, held: false },
+  { id: 4, value: 0, held: false },
+  { id: 5, value: 0, held: false },
+]);
+
+function rollDice() {
+  setDice(prev =>
+    prev.map(die =>
+      die.held
+        ? die                              // pidetty → sama arvo
+        : { ...die, value: Math.floor(Math.random() * 6) + 1 }
+    )
+  );
 }
 
-    
-//Create a new game
-const NewGame = () => {
-    
+function toggleHold(id) {
+  setDice(prev =>
+    prev.map(die =>
+      die.id === id ? { ...die, held: !die.held } : die
+    )
+  );
 }
-
 
 /**
  * 
