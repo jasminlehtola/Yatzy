@@ -1,50 +1,83 @@
-
+import { useState, Fragment } from "react"
 
 // muuta myöhemmin Player-otsikot päivittymään pelaajien syöttämillä nimillä
 const Scoreboard = ({ players, categories, scores, setScores }) => {
+    const [editingCell, setEditingCell] = useState(null)
 
     const handleCellClick = (category, playerIndex) => {
-        const newScores = { ...scores }
+        // Block already filled cells
+        if (scores[category][playerIndex] !== null) return
+
+        setEditingCell({ category, playerIndex })
+
+    }
+
+    const saveValue = (category, playerIndex, value) => {
+        const points = Number(value);
+        if (isNaN(points)) return;
+
+        const newScores = { ...scores };
+
         if (!newScores[category]) {
             newScores[category] = [null, null, null, null]
         }
-        if (newScores[category][playerIndex] !== null) return
 
-        newScores[category][playerIndex] = 10
-        setScores(newScores)
+        newScores[category][playerIndex] = points;
+        setScores(newScores);
         console.log(`Clicked on category: ${category}, player index: ${playerIndex}`)
+        setEditingCell(null);
     }
 
 
+
+
     return (
-        <div>
-            <div className="grid-table">
-                <div className="cell header">Category</div>
-                <div className="cell header">Player 1</div>
-                <div className="cell header">Player 2</div>
-                <div className="cell header">Player 3</div>
-                <div className="cell header">Player 4</div>
+  <div>
+    <div className="grid-table">
+      <div className="cell header">Category</div>
+      <div className="cell header">Player 1</div>
+      <div className="cell header">Player 2</div>
+      <div className="cell header">Player 3</div>
+      <div className="cell header">Player 4</div>
 
-                {categories.map((category) => (
-                    <>
-                        <div className="cell category">{category}</div>
+      {categories.map((category) => (
+        <Fragment key={category}>
+          <div className="cell category">{category}</div>
 
-                        {players.map((_, playerIndex) => (
-                            <div
-                                key={playerIndex}
-                                className="cell"
-                                onClick={() => handleCellClick(category, playerIndex)}
-                            >
-                                {scores[category]?.[playerIndex] ?? ''}
-                            </div>
-                        ))}
-                    </>
-                ))}
-            </div>
-        </div>
-    )
+          {players.map((_, playerIndex) => {
+            const isEditing =
+              editingCell?.category === category &&
+              editingCell?.playerIndex === playerIndex
+
+            return (
+              <div
+                key={playerIndex}
+                className="cell"
+                onClick={() => handleCellClick(category, playerIndex)}
+              >
+                {isEditing ? (
+                  <input
+                    type="number"
+                    autoFocus
+                    onBlur={(e) =>
+                      saveValue(category, playerIndex, e.target.value)
+                    }
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        saveValue(category, playerIndex, e.target.value)
+                      }
+                    }}
+                  />
+                ) : (
+                  scores[category]?.[playerIndex] ?? ""
+                )}
+              </div>
+            )
+          })}
+        </Fragment>
+      ))}
+    </div>
+  </div>
+);
 }
-
-
-
 export default Scoreboard
