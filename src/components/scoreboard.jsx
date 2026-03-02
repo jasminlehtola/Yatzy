@@ -1,19 +1,21 @@
-import { useState } from 'react';
 
 
+// muuta myöhemmin Player-otsikot päivittymään pelaajien syöttämillä nimillä
+const Scoreboard = ({ players, categories, scores, setScores }) => {
+
+    const handleCellClick = (category, playerIndex) => {
+        const newScores = { ...scores }
+        if (!newScores[category]) {
+            newScores[category] = [null, null, null, null]
+        }
+        if (newScores[category][playerIndex] !== null) return
+
+        newScores[category][playerIndex] = 10
+        setScores(newScores)
+        console.log(`Clicked on category: ${category}, player index: ${playerIndex}`)
+    }
 
 
-const handleCellClick = (category, playerIndex) => {
-  const newScores = { ...scores };
-  if (!newScores[category]) {
-    newScores[category] = [null, null, null, null];
-  }
-  newScores[category][playerIndex] = 10;
-  setScores(newScores);
-};
-
-
-const Scoreboard = ({ players, categories, scores }) => {
     return (
         <div>
             <div className="grid-table">
@@ -27,12 +29,13 @@ const Scoreboard = ({ players, categories, scores }) => {
                     <>
                         <div className="cell category">{category}</div>
 
-                        {players.map((playerIndex) => (
+                        {players.map((_, playerIndex) => (
                             <div
                                 key={playerIndex}
                                 className="cell"
                                 onClick={() => handleCellClick(category, playerIndex)}
                             >
+                                {scores[category]?.[playerIndex] ?? ''}
                             </div>
                         ))}
                     </>
