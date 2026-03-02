@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import Scoreboard from './components/scoreboard'
-import './styles.css'
+import './index.css'
 
 import categories from './data/categories'
 import players from './data/players'
