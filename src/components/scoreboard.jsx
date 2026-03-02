@@ -1,8 +1,19 @@
-import '../styles.css'
-import categories from '../data/categories'
-import players from '../data/players'
+import { useState } from 'react';
 
-const Scoreboard = () => {
+
+
+
+const handleCellClick = (category, playerIndex) => {
+  const newScores = { ...scores };
+  if (!newScores[category]) {
+    newScores[category] = [null, null, null, null];
+  }
+  newScores[category][playerIndex] = 10;
+  setScores(newScores);
+};
+
+
+const Scoreboard = ({ players, categories, scores }) => {
     return (
         <div>
             <div className="grid-table">
