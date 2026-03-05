@@ -5,7 +5,7 @@ import './index.css'
 import categories from './data/categories'
 import players from './data/players'
 
-import Dice from './components/dice'
+import Dice from './components/die'
 import Scoreboard from './components/scoreboard'
 import dicesix from './assets/dice-six-faces-six.png'
 
@@ -41,11 +41,6 @@ const App = () => {
       <Dice />
   <img src = {dicesix} className = "dice"/>
   </div>
-    <div class="scoreboard">
-    </div>
-      
-      <div className="dice">
-      </div>
 
     </div>
 
