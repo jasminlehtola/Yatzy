@@ -72,7 +72,7 @@ button:focus-visible {
 .scoreboard {
     width: 400px;
     height: 700px;
-    background-color: Orange;
+    background-color: rgb(193, 193, 193);
 }
 
 @media (prefers-color-scheme: light) {
@@ -89,7 +89,9 @@ button:focus-visible {
 }
 
 
-/* Custom styles for the scoreboard component */
+/* -----------------------------------------
+* Custom styles for the scoreboard component 
+---------------------------------------------*/
 .grid-table {
   display: grid;
   grid-template-columns: 2fr repeat(4, 1fr);
@@ -97,10 +99,9 @@ button:focus-visible {
   
 }
 
-
 .cell {
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #f7f7f7;
   text-align: center;
   min-width: 45px;
   max-width: 55;
@@ -115,16 +116,20 @@ button:focus-visible {
 }
 
 .cell:not(.header):not(.category):hover {
-  background-color: #f0f0f0;
+  background-color: #8b8989;
 }
 
-
 .header {
-  background: #eee;
+  background: #94c3d4;
   font-weight: bold;
 }
 
 .category {
   text-align: left;
   font-weight: 500;
+}
+
+.cell.calculated {
+  font-weight: bold;
+  background-color: #adadad;
 }

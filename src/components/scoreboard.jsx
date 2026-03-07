@@ -1,6 +1,8 @@
 import { useState, Fragment } from "react"
 
-// muuta myöhemmin Player-otsikot päivittymään pelaajien syöttämillä nimillä
+// TODO: lisää muokkausmahdollisuus (tuplaklikkauksella?) soluihin, joissa on jo arvo (jos menee vahingossa väärin)
+// TODO: muuta myöhemmin Player-otsikot päivittymään pelaajien syöttämillä nimillä
+
 const Scoreboard = ({ players, categories, scores, setScores }) => {
   const [editingCell, setEditingCell] = useState(null)
 
@@ -49,7 +51,7 @@ const Scoreboard = ({ players, categories, scores, setScores }) => {
     return total >= 63 ? 50 : 0
   }
 
-  
+
   // Helper function to get the value to display in each cell, including calculated totals and bonuses
   const getCellValue = (category, playerIndex) => {
     // TOTAL row
@@ -58,7 +60,7 @@ const Scoreboard = ({ players, categories, scores, setScores }) => {
     }
 
     // BONUS row
-    if (category ==="BONUS") {
+    if (category === "BONUS") {
       const total = calculateUpperTotal(scores, playerIndex)
       return calculateBonus(total)
     }
@@ -81,7 +83,9 @@ const Scoreboard = ({ players, categories, scores, setScores }) => {
 
         {categories.map((category) => (
           <Fragment key={category}>
-            <div className="cell category">{category}</div>
+            <div className={`cell category ${category === "TOTAL" || category === "BONUS" ? "calculated" : ""}`}>
+              {category}
+            </div>
 
             {players.map((_, playerIndex) => {
               const isEditing =
@@ -91,14 +95,19 @@ const Scoreboard = ({ players, categories, scores, setScores }) => {
               return (
                 <div
                   key={playerIndex}
-                  className="cell"
+                  className={`cell ${category === "TOTAL" || category === "BONUS" ? "calculated" : ""}`}
                   onClick={() => {
                     if (!isEditing) handleCellClick(category, playerIndex)
+                  }}
+                  onDoubleClick={() => {
+                    if (category === "TOTAL" || category === "BONUS") return
+                    setEditingCell({ category, playerIndex })
                   }}
                 >
                   {isEditing ? (
                     <input
                       type="number"
+                      defaultValue={scores[category]?.[playerIndex] ?? ""}
                       autoFocus
                       onBlur={(e) =>
                         saveValue(category, playerIndex, e.target.value)
