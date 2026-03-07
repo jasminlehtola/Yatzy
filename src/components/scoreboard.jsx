@@ -10,7 +10,7 @@ const Scoreboard = ({ players, categories, scores, setScores }) => {
   const handleCellClick = (category, playerIndex) => {
     // Block already filled cells. If a value already exists -> block editing
     // If the score is null or undefined -> allow editing
-    if (category === "TOTAL" || category === "BONUS") return
+    if (category === "TOTAL" || category === "BONUS" || category === "TOTAL SCORE") return
     if (scores[category]?.[playerIndex] != null) return
 
     setEditingCell({ category, playerIndex })
@@ -36,14 +36,15 @@ const Scoreboard = ({ players, categories, scores, setScores }) => {
 
   // Helper function to calculate the total score for the upper section for a given player
   const calculateUpperTotal = (scores, playerIndex) => {
-    let total = 0
-    total += scores["Ones"]?.[playerIndex] || 0
-    total += scores["Twos"]?.[playerIndex] || 0
-    total += scores["Threes"]?.[playerIndex] || 0
-    total += scores["Fours"]?.[playerIndex] || 0
-    total += scores["Fives"]?.[playerIndex] || 0
-    total += scores["Sixes"]?.[playerIndex] || 0
-    return total
+    let upperTotal = 0
+    upperTotal += scores["Ones"]?.[playerIndex] || 0
+    upperTotal += scores["Twos"]?.[playerIndex] || 0
+    upperTotal += scores["Threes"]?.[playerIndex] || 0
+    upperTotal += scores["Fours"]?.[playerIndex] || 0
+    upperTotal += scores["Fives"]?.[playerIndex] || 0
+    upperTotal += scores["Sixes"]?.[playerIndex] || 0
+
+    return upperTotal
   }
 
   // Helper function to calculate the bonus points if player has 63 or more points in the upper section
@@ -51,21 +52,41 @@ const Scoreboard = ({ players, categories, scores, setScores }) => {
     return total >= 63 ? 50 : 0
   }
 
+  // Helper function to calculate the grand total score for a given player
+  const calculateGrandTotal = (scores, playerIndex) => {
+    const upperTotal = calculateUpperTotal(scores, playerIndex)
+    const bonus = calculateBonus(upperTotal)
+
+    let lowerTotal = 0
+    lowerTotal += scores["Pair"]?.[playerIndex] || 0
+    lowerTotal += scores["Two pair"]?.[playerIndex] || 0
+    lowerTotal += scores["Three of a kind"]?.[playerIndex] || 0
+    lowerTotal += scores["Four of a kind"]?.[playerIndex] || 0
+    lowerTotal += scores["Small straight"]?.[playerIndex] || 0
+    lowerTotal += scores["Large straight"]?.[playerIndex] || 0
+    lowerTotal += scores["Full house"]?.[playerIndex] || 0
+    lowerTotal += scores["Chance"]?.[playerIndex] || 0
+    lowerTotal += scores["Yatzy"]?.[playerIndex] || 0
+
+    return upperTotal + bonus + lowerTotal
+  }
+
 
   // Helper function to get the value to display in each cell, including calculated totals and bonuses
   const getCellValue = (category, playerIndex) => {
-    // TOTAL row
     if (category === "TOTAL") {
       return calculateUpperTotal(scores, playerIndex)
     }
 
-    // BONUS row
     if (category === "BONUS") {
       const total = calculateUpperTotal(scores, playerIndex)
       return calculateBonus(total)
     }
 
-    // Normal categories
+    if (category === "TOTAL SCORE") {
+    return calculateGrandTotal(scores, playerIndex)
+  }
+
     return scores[category]?.[playerIndex] ?? ""
   }
 
@@ -83,7 +104,7 @@ const Scoreboard = ({ players, categories, scores, setScores }) => {
 
         {categories.map((category) => (
           <Fragment key={category}>
-            <div className={`cell category ${category === "TOTAL" || category === "BONUS" ? "calculated" : ""}`}>
+            <div className={`cell category ${category === "TOTAL" || category === "BONUS" || category === "TOTAL SCORE" ? "calculated" : ""}`}>
               {category}
             </div>
 
@@ -95,12 +116,12 @@ const Scoreboard = ({ players, categories, scores, setScores }) => {
               return (
                 <div
                   key={playerIndex}
-                  className={`cell ${category === "TOTAL" || category === "BONUS" ? "calculated" : ""}`}
+                  className={`cell ${category === "TOTAL" || category === "BONUS" || category === "TOTAL SCORE" ? "calculated" : ""}`}
                   onClick={() => {
                     if (!isEditing) handleCellClick(category, playerIndex)
                   }}
                   onDoubleClick={() => {
-                    if (category === "TOTAL" || category === "BONUS") return
+                    if (category === "TOTAL" || category === "BONUS" || category === "TOTAL SCORE") return
                     setEditingCell({ category, playerIndex })
                   }}
                 >
