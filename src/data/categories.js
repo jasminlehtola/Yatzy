@@ -6,7 +6,7 @@ const categories = [
   "Fives", 
   "Sixes", 
   "TOTAL", 
-  "BONUS (if total score is 63 or over)",
+  "BONUS",
   "Pair", 
   "Two pair", 
   "Three of a kind", 
