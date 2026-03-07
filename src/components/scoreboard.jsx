@@ -1,6 +1,7 @@
 import { useState, Fragment } from "react"
 
 // TODO: muuta myöhemmin Player-otsikot päivittymään pelaajien syöttämillä nimillä
+// TODO: tallenna peli localstorageen
 
 const Scoreboard = ({ players, categories, scores, setScores }) => {
   const [editingCell, setEditingCell] = useState(null)

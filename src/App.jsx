@@ -28,19 +28,21 @@ const App = () => {
           <p>Leaderboard</p>
         </button>
 
-    </div>
-      <div className="scoreboard">
-        <Scoreboard
-          players={players}
-          categories={categories}
-          scores={scores}
-          setScores={setScores}
-        />
       </div>
-    <div class="dice">
-      <Dice />
-  <img src = {dicesix} className = "dice"/>
-  </div>
+      <div className="gameArea">
+        <div className="scoreboard">
+          <Scoreboard
+            players={players}
+            categories={categories}
+            scores={scores}
+            setScores={setScores}
+          />
+        </div>
+        <div class="dice">
+          <Dice />
+          <img src={dicesix} className="dice" />
+        </div>
+      </div>
 
     </div>
 

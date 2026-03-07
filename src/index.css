@@ -55,12 +55,19 @@ button:focus-visible {
 
 .dice {
     width: auto;
+    margin-top: 20px;
     height: 100px;
-    background-color: SlateBlue;
+    background-color: #94c3d4;
 }
 
 .game {
     width: 100%;
+}
+
+.gameArea {
+    display: flex;
+    gap: 20px; 
+    align-items: flex-start;
 }
 
 .menu {
@@ -73,6 +80,9 @@ button:focus-visible {
     width: 400px;
     height: 700px;
     background-color: rgb(193, 193, 193);
+    margin-top: 20px;
+    margin-left: 15px;
+    margin-bottom: 50px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -95,7 +105,7 @@ button:focus-visible {
 .grid-table {
   display: grid;
   grid-template-columns: 2fr repeat(4, 1fr);
-  border: 1px solid #ccc;
+  border: 1px solid #e6e6e6;
   
 }
 
