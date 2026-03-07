@@ -4,9 +4,11 @@ import { useState, Fragment } from "react"
 const Scoreboard = ({ players, categories, scores, setScores }) => {
     const [editingCell, setEditingCell] = useState(null)
 
+    
     const handleCellClick = (category, playerIndex) => {
-        // Block already filled cells
-        if (scores[category][playerIndex] !== null) return
+        // Block already filled cells. If a value already exists -> block editing
+        // If the score is null or undefined -> allow editing
+        if (scores[category]?.[playerIndex] != null) return
 
         setEditingCell({ category, playerIndex })
 
@@ -53,7 +55,9 @@ const Scoreboard = ({ players, categories, scores, setScores }) => {
               <div
                 key={playerIndex}
                 className="cell"
-                onClick={() => handleCellClick(category, playerIndex)}
+                onClick={() => {
+                  if (!isEditing) handleCellClick(category, playerIndex)
+                }}
               >
                 {isEditing ? (
                   <input
