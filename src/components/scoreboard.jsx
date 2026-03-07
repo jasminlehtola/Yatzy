@@ -1,22 +1,20 @@
 import { useState, Fragment } from "react"
 
-// TODO: lisää muokkausmahdollisuus (tuplaklikkauksella?) soluihin, joissa on jo arvo (jos menee vahingossa väärin)
 // TODO: muuta myöhemmin Player-otsikot päivittymään pelaajien syöttämillä nimillä
 
 const Scoreboard = ({ players, categories, scores, setScores }) => {
   const [editingCell, setEditingCell] = useState(null)
 
-
+  // Blocks already filled cells. If a value already exists -> block editing
+  // If the score is null or undefined -> allow editing
   const handleCellClick = (category, playerIndex) => {
-    // Block already filled cells. If a value already exists -> block editing
-    // If the score is null or undefined -> allow editing
     if (category === "TOTAL" || category === "BONUS" || category === "TOTAL SCORE") return
     if (scores[category]?.[playerIndex] != null) return
 
     setEditingCell({ category, playerIndex })
 
   }
-
+  // Saves the value entered by the user and updates the scores state
   const saveValue = (category, playerIndex, value) => {
     const points = Number(value)
     if (isNaN(points)) return
