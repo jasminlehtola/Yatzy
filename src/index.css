@@ -34,7 +34,7 @@ button {
   border-radius: 8px;
   border: 2px solid transparent;
   padding: 10px;
-  margin: 20px;
+  margin: 10px;
   font-size: 20px;
   font-weight: 500;
   font-family: inherit;
@@ -53,11 +53,45 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.throwButton {
+  border-radius: 8px;
+  border: 2px solid transparent;
+  padding: 5px;
+  margin: 10px;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  width: 100px;
+  height: 35px;
+  background-color: #608f97;
+  align-items: center;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.dices {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
 .dice {
-    width: auto;
+    width: 75px;
     margin-top: 20px;
-    height: 100px;
-    background-color: #94c3d4;
+    height: 100%;
+    background-color: #a98686;
+}
+
+.throw {
+    width: 100px;
+    height: 50px;
+    background-color: #7d6363;
+    align-items: center;
+    margin-top: 20px;
 }
 
 .game {
@@ -65,6 +99,7 @@ button:focus-visible {
 }
 
 .gameArea {
+    width: 100%;
     display: flex;
     gap: 20px; 
     align-items: flex-start;
