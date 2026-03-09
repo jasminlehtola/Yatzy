@@ -1,40 +1,32 @@
 import { useState } from 'react';
 
-import './App.css'
 
-// tällä ei tee mitään?
 
-/*
-** Menupalkki:
-Start-nappi
-End-nappi
-Leaderboard-nappi
+const [dice, setDice] = useState([
+  { id: 1, value: 0, held: false },
+  { id: 2, value: 0, held: false },
+  { id: 3, value: 0, held: false },
+  { id: 4, value: 0, held: false },
+  { id: 5, value: 0, held: false },
+]);
 
-** Taulukko:
-taulukko[rivi][pelaaja]
-
-scores = {
-  Ones:   [null, null, null, null],
-  Twos:   [null, null, null, null],
-  ...
+function rollDice() {
+  setDice(prev =>
+    prev.map(die =>
+      die.held
+        ? die                              // True -> pidetään noppa
+        : { ...die, value: Math.floor(Math.random() * 6) + 1 } // False -> heitetään uudelleen
+    )
+  );
 }
 
-Tarkistus, onko kategoria jo käytetty (ei voi lisätä samaan kahteen kertaan):
-käytetyt_kategoriat[pelaaja]
-
-
-** Pelialue
-
-*/
-
-
-
-
-
-
-
-
-
+function toggleHold(id) {
+  setDice(prev =>
+    prev.map(die =>
+      die.id === id ? { ...die, held: !die.held } : die
+    )
+  );
+}
 
 /**
  * 
