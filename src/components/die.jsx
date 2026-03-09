@@ -6,6 +6,18 @@ import dice4 from '../assets/dice-six-faces-four.png';
 import dice5 from '../assets/dice-six-faces-five.png';
 import dice6 from '../assets/dice-six-faces-six.png'
 
+const Dice = () => {
+
+  const silmaluvut = Array.of(2,3,4,4,2);
+
+  const nopat = silmaluvut.map((e,idx) => <Die key={idx} value={e} />)
+  return (
+    <div>
+      {nopat}
+    </div>
+  )
+}
+
 /*const Die = (props) => {
 
   return (
@@ -13,7 +25,8 @@ import dice6 from '../assets/dice-six-faces-six.png'
   )
 
 }*/
-export default function Die({ value, held, onClick }) {
+
+function Die({ value, held, onClick }) {
   const styles = {
     /*backgroundColor: held ? "#f0c674" : "#eee",
     width: "60px",
@@ -32,10 +45,26 @@ export default function Die({ value, held, onClick }) {
 
   };
 
+  let dice = dice1
+
+  if (value === 2) {
+    dice = dice2;
+  } else if (value === 3) {
+    dice = dice3;
+  } else if (value === 4) {
+    dice = dice4;
+  } else if (value === 5) {
+    dice = dice5;
+  } else if (value === 6) {
+    dice = dice6;
+  }
+
+
   return (
     <div style={styles} onClick={onClick}>
-      <img src={dice6} className="dice" />
+      <img src={dice} className="dice" />
     </div>
   );
 }
 
+export default Dice
