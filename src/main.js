@@ -1,6 +1,8 @@
+import { useState } from 'react';
+
 import './App.css'
 
-
+// tällä ei tee mitään?
 
 /*
 ** Menupalkki:
@@ -11,12 +13,11 @@ Leaderboard-nappi
 ** Taulukko:
 taulukko[rivi][pelaaja]
 
-taulukko = [
-  [null, null, null, null, null],  // Ykköset
-  [null, null, null, null, null],  // Kakkoset
+scores = {
+  Ones:   [null, null, null, null],
+  Twos:   [null, null, null, null],
   ...
-  [null, null, null, null, null]   // Yatzy
-]
+}
 
 Tarkistus, onko kategoria jo käytetty (ei voi lisätä samaan kahteen kertaan):
 käytetyt_kategoriat[pelaaja]
@@ -36,6 +37,40 @@ käytetyt_kategoriat[pelaaja]
 
 
 /**
+ * 
+ * 
+ * 
+ * 
+ * Main Yatzy{
+ *
+ * <Create game>
+ * Game game = new Game;
+ *
+ * <Ask player names>
+ * game.addPlayer(input)
+ *
+ * <Create dice>
+ * Die one = new Die;
+ * ...
+ * Die five = new Die;
+ *
+ * <<Loop>>
+ *
+ * <Choose player>
+ * game.getPlayer
+ *
+ * <Throw dice>
+ * for (three times){
+ *     for (go through dice) {
+ *         if (die != locked) {
+ *             Die.throwDie;
+ *         }
+ *     }
+ *     ask to lock or rethrow
+ *     if (third throw OR wants to record score) {
+ *         select point category and setCategory = input
+ *     }
+ * }
  * class Die
  * int value = 0;
  * boolean locked = false;
@@ -75,36 +110,7 @@ käytetyt_kategoriat[pelaaja]
  *
  *
  *
- * Main Yatzy{
- *
- * <Create game>
- * Game game = new Game;
- *
- * <Ask player names>
- * game.addPlayer(input)
- *
- * <Create dice>
- * Die one = new Die;
- * ...
- * Die five = new Die;
- *
- * <<Loop>>
- *
- * <Choose player>
- * game.getPlayer
- *
- * <Throw dice>
- * for (three times){
- *     for (go through dice) {
- *         if (die != locked) {
- *             Die.throwDie;
- *         }
- *     }
- *     ask to lock or rethrow
- *     if (third throw OR wants to record score) {
- *         select point category and setCategory = input
- *     }
- * }
+ * 
  *
  * <</Loop>>
  *

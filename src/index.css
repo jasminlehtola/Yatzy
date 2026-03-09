@@ -55,12 +55,19 @@ button:focus-visible {
 
 .dice {
     width: auto;
-    height; 700px;
-    background-color: SlateBlue;
+    margin-top: 20px;
+    height: 100px;
+    background-color: #94c3d4;
 }
 
 .game {
     width: 100%;
+}
+
+.gameArea {
+    display: flex;
+    gap: 20px; 
+    align-items: flex-start;
 }
 
 .menu {
@@ -72,7 +79,10 @@ button:focus-visible {
 .scoreboard {
     width: 400px;
     height: 700px;
-    background-color: Orange;
+    background-color: rgb(193, 193, 193);
+    margin-top: 20px;
+    margin-left: 15px;
+    margin-bottom: 50px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -86,4 +96,50 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+
+/* -----------------------------------------
+* Custom styles for the scoreboard component 
+---------------------------------------------*/
+.grid-table {
+  display: grid;
+  grid-template-columns: 2fr repeat(4, 1fr);
+  border: 1px solid #e6e6e6;
+  
+}
+
+.cell {
+  padding: 8px;
+  border: 1px solid #f7f7f7;
+  text-align: center;
+  min-width: 45px;
+  max-width: 55;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cell:not(.header):not(.category) {
+  cursor: pointer;
+}
+
+.cell:not(.header):not(.category):hover {
+  background-color: #8b8989;
+}
+
+.header {
+  background: #94c3d4;
+  font-weight: bold;
+}
+
+.category {
+  text-align: left;
+  font-weight: 500;
+}
+
+.cell.calculated {
+  font-weight: bold;
+  background-color: #adadad;
 }
