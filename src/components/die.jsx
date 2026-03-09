@@ -1,4 +1,10 @@
 import { useState } from "react";
+import dice1 from '../assets/dice-six-faces-one.png';
+import dice2 from '../assets/dice-six-faces-two.png';
+import dice3 from '../assets/dice-six-faces-three.png';
+import dice4 from '../assets/dice-six-faces-four.png';
+import dice5 from '../assets/dice-six-faces-five.png';
+import dice6 from '../assets/dice-six-faces-six.png'
 
 /*const Die = (props) => {
 
@@ -23,12 +29,12 @@ export default function Die({ value, held, onClick }) {
     userSelect: "none",
     boxShadow: held ? "0 0 10px rgba(0,0,0,0.4)" : "none",
     */
-   
+
   };
 
   return (
     <div style={styles} onClick={onClick}>
-      {value || "?"}
+      <img src={dice6} className="dice" />
     </div>
   );
 }
