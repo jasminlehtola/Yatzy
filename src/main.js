@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 
-
+/*
 const [dice, setDice] = useState([
   { id: 1, value: 0, held: false },
   { id: 2, value: 0, held: false },
@@ -27,6 +27,7 @@ function toggleHold(id) {
     )
   );
 }
+*/
 
 /**
  * 
