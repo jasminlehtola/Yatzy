@@ -2,10 +2,9 @@ import { useState, useEffect } from 'react';
 import './index.css'
 import categories from './data/categories'
 import players from './data/players'
-
+import Dice from './components/die.jsx'
 //import Dice from './components/diceRoll'
 import Scoreboard from './components/scoreboard'
-import dicesix from './assets/dice-six-faces-six.png'
 
 const App = () => {
   //const [players, setPlayers] = useState([]) 
@@ -43,12 +42,12 @@ const handleThrow = () => {
           />
         </div>
 
-        <div className="dices">
+        <div className="diceArea">
           <div className="throwButton">
             <throwButton onClick={handleThrow}>Throw</throwButton>
           </div>
-          <div className="">
-            
+          <div className="diceContainer">
+            <Dice />
           </div>
 
 

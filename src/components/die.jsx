@@ -8,11 +8,11 @@ import dice6 from '../assets/dice-six-faces-six.png'
 
 const Dice = () => {
 
-  const silmaluvut = Array.of(2,3,4,4,2);
+  const silmaluvut = Array.of(2,3,5,4,2);
 
   const nopat = silmaluvut.map((e,idx) => <Die key={idx} value={e} />)
   return (
-    <div>
+    <div className='diceContainer'>
       {nopat}
     </div>
   )
@@ -61,7 +61,13 @@ function Die({ value, held, onClick }) {
 
 
   return (
-    <div style={styles} onClick={onClick}>
+    <div className="die"
+      style={{
+      cursor: "pointer",
+      width: "120px",
+      height: "120px",
+    }} 
+    onClick={onClick}>
       <img src={dice} className="dice" />
     </div>
   );
