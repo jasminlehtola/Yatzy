@@ -8,20 +8,22 @@ import Scoreboard from './components/scoreboard'
 import Menu from './components/menu.jsx'
 
 const App = () => {
-  //const [players, setPlayers] = useState([]) 
+  const [players, setPlayers] = useState(["player1", "player2", "player3", "player4"])
   //const [categories, setCategories] = useState([])
   const [scores, setScores] = useState({})
 
 
-const handleThrow = () => {
-  console.log("Throw button clicked")
-  diceRoll.rollDice()
-}
+  const handleThrow = () => {
+    console.log("Throw button clicked")
+    diceRoll.rollDice()
+  }
 
 
   return (
     <div className="game">
-      <Menu />
+      <Menu
+        setPlayers={setPlayers}
+      />
       <div className="gameArea">
         <div className="scoreboard">
           <Scoreboard

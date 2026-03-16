@@ -84,8 +84,8 @@ const Scoreboard = ({ players, categories, scores, setScores }) => {
     }
 
     if (category === "TOTAL SCORE") {
-    return calculateGrandTotal(scores, playerIndex)
-  }
+      return calculateGrandTotal(scores, playerIndex)
+    }
 
     return scores[category]?.[playerIndex] ?? ""
   }
@@ -97,10 +97,10 @@ const Scoreboard = ({ players, categories, scores, setScores }) => {
     <div>
       <div className="grid-table">
         <div className="cell header">Category</div>
-        <div className="cell header">Player 1</div>
-        <div className="cell header">Player 2</div>
-        <div className="cell header">Player 3</div>
-        <div className="cell header">Player 4</div>
+        <div className="cell header">{players[0]}</div>
+        <div className="cell header">{players[1]}</div>
+        <div className="cell header">{players[2]}</div>
+        <div className="cell header">{players[3]}</div>
 
         {categories.map((category) => (
           <Fragment key={category}>
