@@ -14,17 +14,20 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
 
 body {
-    margin: 0px;
-    background-image: "../public/vite.svg";
+  margin: 0px;
+  background-image: "../public/vite.svg";
 }
+
 p {
-    margin: 0px;
+  margin: 0px;
 }
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -59,8 +62,8 @@ button:focus-visible {
 }
 
 .menuButton {
-    border-radius: 8px;
-    margin: 20px;
+  border-radius: 8px;
+  margin: 20px;
 }
 
 .throwButton {
@@ -74,11 +77,11 @@ button:focus-visible {
 }
 
 .diceArea {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 50px;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  width: 100%;
 }
 
 
@@ -88,10 +91,10 @@ button:focus-visible {
 
 .diceContainer {
   display: flex;
-  justify-content: center;    
+  justify-content: center;
   align-items: center;
   gap: 20px;
-  flex-wrap: wrap;        
+  flex-wrap: wrap;
 }
 
 .die img {
@@ -100,41 +103,41 @@ button:focus-visible {
 }
 
 .throw {
-    width: 100px;
-    height: 50px;
-    background-color: #7d6363;
-    align-items: center;
-    margin-top: 20px;
+  width: 100px;
+  height: 50px;
+  background-color: #7d6363;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .game {
-    width: 100%;
+  width: 100%;
 }
 
 .gameArea {
-    width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    margin: 20px;
-    gap: 20px;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  gap: 20px;
 }
 
 .menu {
-    width: 100%;
-    height: 80px;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-end;
-    align-items: center;
-    background-color: MediumSeaGreen;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: MediumSeaGreen;
 }
 
 .scoreboard {
-    flex-basis: 800px;
-    width: 100%;
-    background-color: #dddddd;
+  flex-basis: 800px;
+  width: 100%;
+  background-color: #dddddd;
 }
 
 @media (prefers-color-scheme: light) {
@@ -142,9 +145,11 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }
@@ -193,4 +198,10 @@ button:focus-visible {
 .cell.calculated {
   font-weight: bold;
   background-color: #adadad;
+}
+
+.disabled {
+  background-color: #8b8989;
+  color: #8b8989;
+  pointer-events: none;
 }

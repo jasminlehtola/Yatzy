@@ -1,8 +1,5 @@
 import { useState, Fragment } from "react"
 
-// TODO: muuta myöhemmin Player-otsikot päivittymään pelaajien syöttämillä nimillä
-// TODO: tallenna peli localstorageen
-// TODO: lisää hover info bonuksen päälle, joka kertoo pistemäärästä 63 tai enemmän
 
 const Scoreboard = ({ players, categories, scores, setScores }) => {
   const [editingCell, setEditingCell] = useState(null)
@@ -10,12 +7,13 @@ const Scoreboard = ({ players, categories, scores, setScores }) => {
   // Blocks already filled cells. If a value already exists -> block editing
   // If the score is null or undefined -> allow editing
   const handleCellClick = (category, playerIndex) => {
+    if (!players[playerIndex]) return
     if (category === "TOTAL" || category === "BONUS" || category === "TOTAL SCORE") return
     if (scores[category]?.[playerIndex] != null) return
 
     setEditingCell({ category, playerIndex })
-
   }
+
   // Saves the value entered by the user and updates the scores state
   const saveValue = (category, playerIndex, value) => {
     const points = Number(value)
@@ -91,8 +89,6 @@ const Scoreboard = ({ players, categories, scores, setScores }) => {
   }
 
 
-
-
   return (
     <div>
       <div className="grid-table">
@@ -109,6 +105,8 @@ const Scoreboard = ({ players, categories, scores, setScores }) => {
             </div>
 
             {players.map((_, playerIndex) => {
+              const isActivePlayer = players[playerIndex]
+
               const isEditing =
                 editingCell?.category === category &&
                 editingCell?.playerIndex === playerIndex
@@ -116,11 +114,16 @@ const Scoreboard = ({ players, categories, scores, setScores }) => {
               return (
                 <div
                   key={playerIndex}
-                  className={`cell ${category === "TOTAL" || category === "BONUS" || category === "TOTAL SCORE" ? "calculated" : ""}`}
+                  className={`cell 
+                    ${!players[playerIndex] ? "disabled" : ""}
+                    ${category === "TOTAL" || category === "BONUS" || category === "TOTAL SCORE" ? "calculated" : ""}
+                  `}
                   onClick={() => {
+                    if (!isActivePlayer) return
                     if (!isEditing) handleCellClick(category, playerIndex)
                   }}
                   onDoubleClick={() => {
+                    if (!isActivePlayer) return
                     if (category === "TOTAL" || category === "BONUS" || category === "TOTAL SCORE") return
                     setEditingCell({ category, playerIndex })
                   }}

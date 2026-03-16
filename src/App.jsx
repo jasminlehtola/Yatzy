@@ -8,8 +8,7 @@ import Scoreboard from './components/scoreboard'
 import Menu from './components/menu.jsx'
 
 const App = () => {
-  const [players, setPlayers] = useState(["player1", "player2", "player3", "player4"])
-  //const [categories, setCategories] = useState([])
+  const [players, setPlayers] = useState(["Player 1", "Player 2", "Player 3", "Player 4"])
   const [scores, setScores] = useState({})
 
 
@@ -23,6 +22,7 @@ const App = () => {
     <div className="game">
       <Menu
         setPlayers={setPlayers}
+        scores={scores} setScores={setScores}
       />
       <div className="gameArea">
         <div className="scoreboard">
@@ -41,11 +41,8 @@ const App = () => {
           <div className="diceContainer">
             <Dice />
           </div>
-
-
         </div>
       </div>
-
     </div >
 
   )
