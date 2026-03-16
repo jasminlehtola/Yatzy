@@ -42,10 +42,7 @@ const Dice = forwardRef((_, ref) => {
 
   return (
     <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
-      <h2>Yatzy</h2>
-
-      <div>
-
+      <div className="diceContainer">
         {dice.map((die) => (
           <Die
             key={die.id}
@@ -60,7 +57,8 @@ const Dice = forwardRef((_, ref) => {
       <p style={{
         marginTop: "12px",
         fontWeight: "bold",
-        color: rollsLeft === 0 ? "red" : "#333" }}>
+        color: rollsLeft === 0 ? "red" : "#333"
+      }}>
         Heittoja jäljellä: {rollsLeft} / 3
       </p>
     </div>
