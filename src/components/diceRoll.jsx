@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Die from "Die";
+import Die from "die.jsx";
 
 export default function Dice() {
 

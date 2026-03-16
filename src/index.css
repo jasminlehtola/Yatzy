@@ -34,7 +34,7 @@ button {
   border-radius: 8px;
   border: 2px solid transparent;
   padding: 10px;
-  margin: 20px;
+  margin: 10px;
   font-size: 20px;
   font-weight: 500;
   font-family: inherit;
@@ -53,11 +53,62 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.dice {
-    width: auto;
+.throwButton {
+  border-radius: 8px;
+  border: 2px solid transparent;
+  padding: 5px;
+  margin: 10px;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  width: 100px;
+  height: 35px;
+  background-color: #608f97;
+  align-items: center;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.diceArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+}
+
+
+.die {
+  flex: 0 0 auto;              
+  width: 80px;              
+  height: 80px;
+  border-radius: 10px;        
+  transition: transform 0.12s;
+}
+
+.diceContainer {
+  display: flex;
+  flex-direction: row;          
+  justify-content: center;    
+  align-items: center;
+  gap: 20px;                  
+  flex-wrap: wrap;        
+}
+
+.die img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.throw {
+    width: 100px;
+    height: 50px;
+    background-color: #7d6363;
+    align-items: center;
     margin-top: 20px;
-    height: 100px;
-    background-color: #94c3d4;
 }
 
 .game {
@@ -65,6 +116,7 @@ button:focus-visible {
 }
 
 .gameArea {
+    width: 100%;
     display: flex;
     gap: 20px; 
     align-items: flex-start;
