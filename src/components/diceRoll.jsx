@@ -1,11 +1,7 @@
-import { useState } from "react";
-import Die from "die.jsx";
+import { forwardRef, useImperativeHandle, useState } from "react";
+import Die from "./die.jsx";
 
-// TODO: laskuri, joka laskee montako kertaa nopat on heitetty. Estää throw-napin painamisen,
-// kun heitot on käytetty loppuun. Resetoi laskuri, kun pelaaja vaihtuu tai peli alkaa uudestaan.
-// TODO: lisää throw-napin alle teksti, joka kertoo montako heittoa on jäljellä 
-
-export default function Dice() {
+const Dice = forwardRef((_, ref) => {
 
   const [dice, setDice] = useState(
     Array.from({ length: 5 }, (_, i) => ({
@@ -15,7 +11,10 @@ export default function Dice() {
     }))
   );
 
-  function rollDice() {
+  const [rollsLeft, setRollsLeft] = useState(3);
+
+  const rollDice = () => {
+    if (rollsLeft <= 0) return;
     setDice(prev =>
       prev.map(die =>
         die.held
@@ -23,9 +22,17 @@ export default function Dice() {
           : { ...die, value: Math.floor(Math.random() * 6) + 1 } // False -> heitetään uudelleen
       )
     );
-  }
+    setRollsLeft((prev) => prev - 1);
+  };
+
+  useImperativeHandle(ref, () => ({
+    roll: rollDice,
+  })
+  );
 
   function toggleHold(id) {
+    if (rollsLeft === 3 && dice.every((d) => d.value === 0)) return;
+
     setDice((prev) =>
       prev.map((die) =>
         die.id === id ? { ...die, held: !die.held } : die
@@ -37,14 +44,7 @@ export default function Dice() {
     <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
       <h2>Yatzy</h2>
 
-      <div
-      /*style={{
-        display: "flex",
-        gap: "12px",
-        margin: "24px 0",
-        flexWrap: "wrap",
-      }}*/
-      >
+      <div>
 
         {dice.map((die) => (
           <Die
@@ -57,25 +57,15 @@ export default function Dice() {
         )
         }
       </div>
-      <button
-        onClick={rollDice}
-      /*style={{
-        padding: "12px 32px",
-        fontSize: "1.2rem",
-        backgroundColor: "#4ecdc4",
-        color: "white",
-        border: "none",
-        borderRadius: "6px",
-        cursor: "pointer",
-      }}*/
-      >
-        Roll dice
-      </button>
-
-      <p style={{ marginTop: "20px", color: "#555" }}>
-        Click a die
+      <p style={{
+        marginTop: "12px",
+        fontWeight: "bold",
+        color: rollsLeft === 0 ? "red" : "#333" }}>
+        Heittoja jäljellä: {rollsLeft} / 3
       </p>
     </div>
   );
 
-}
+});
+
+export default Dice

@@ -6,7 +6,9 @@ import dice4 from '../assets/dice-six-faces-four.png';
 import dice5 from '../assets/dice-six-faces-five.png';
 import dice6 from '../assets/dice-six-faces-six.png'
 
-const Dice = () => {
+const diceImages = [null, dice1, dice2, dice3, dice4, dice5, dice6];
+
+/*const Dice = () => {
 
   const silmaluvut = Array.of(2,3,5,4,2);
 
@@ -18,7 +20,7 @@ const Dice = () => {
   )
 }
 
-/*const Die = (props) => {
+const Die = (props) => {
 
   return (
     <p>The dice value: {props.diceValue}</p>
@@ -28,20 +30,7 @@ const Dice = () => {
 
 function Die({ value, held, onClick }) {
   const styles = {
-    /*backgroundColor: held ? "#f0c674" : "#eee",
-    width: "60px",
-    height: "60px",
-    fontSize: "2.4rem",
-    fontWeight: "bold",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    border: "2px solid #333",
-    borderRadius: "8px",
-    cursor: "pointer",
-    userSelect: "none",
-    boxShadow: held ? "0 0 10px rgba(0,0,0,0.4)" : "none",
-    */
+   
 
   };
 
@@ -67,10 +56,22 @@ function Die({ value, held, onClick }) {
       width: "120px",
       height: "120px",
     }} 
-    onClick={onClick}>
-      <img src={dice} className="dice" />
+    onClick={value === 0 ? undefined : onClick} >
+      
+    {value >= 1 && value <= 6 && (
+        <img
+          src={diceImages[value]}
+          alt={`noppa näyttää ${value}`}
+          className="dice"
+          style={{ width: "100%", height: "100%", objectFit: "contain" }}
+        />
+      )}
     </div>
+
+    /*onClick={onClick}>
+      <img src={dice} className="dice" />
+    </div>*/
   );
 }
 
-export default Dice
+export default Die
