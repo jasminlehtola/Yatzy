@@ -1,8 +1,5 @@
 // **DICE:
-// Laskuri, joka laskee montako kertaa nopat on heitetty. Estää throw-napin painamisen,
-// kun heitot on käytetty loppuun. Resetoi laskuri, kun pelaaja vaihtuu tai peli alkaa uudestaan.
-
-// Lisää throw-napin alle teksti, joka kertoo montako heittoa on jäljellä
+// Musiikki/ääni nopan heittoon
 
 
 // **PELILOGIIKKA:
@@ -17,3 +14,6 @@
 // Tallenna peli localstorageen
 
 // Lisää hover info bonuksen päälle, joka kertoo pistemäärästä 63 tai enemmän
+
+// **APP:
+// Musiikit

@@ -81,18 +81,18 @@ const StartGame = ({ setPlayers }) => {
 const EndGame = () => {
   return (
     <div id="endgame">
-      <button class="menuButton" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">End game</button>
-      <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h2 class="modal-title fs-5" id="exampleModalToggleLabel">Ending game</h2>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <button className="menuButton" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">End game</button>
+      <div className="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h2 className="modal-title fs-5" id="exampleModalToggleLabel">Ending game</h2>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <p>Are you ready to end the game and save results?</p>
               <button
-                class="btn btn-primary"
+                className="btn btn-primary"
                 onClick={() => saveLeaderboard({ name: "Player 1", score: 100 })}
                 data-bs-target="#exampleModalToggle2"
                 data-bs-toggle="modal"
@@ -103,14 +103,14 @@ const EndGame = () => {
           </div>
         </div>
       </div>
-      <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h2 class="modal-title fs-5" id="exampleModalToggleLabel2">Game ended</h2>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div className="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h2 className="modal-title fs-5" id="exampleModalToggleLabel2">Game ended</h2>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <p>The winner is Player 1 with 100 points. Congratulations!<br /><br />Thank you for playing.</p>
             </div>
           </div>
@@ -138,7 +138,7 @@ const OpenLeaderboard = () => {
           </div>
         </div>
       </div>
-      <div class="modal-body">
+      <div className="modal-body">
 
       </div>
     </div>
