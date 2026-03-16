@@ -30,10 +30,16 @@ h1 {
   line-height: 1.1;
 }
 
+#yatzy {
+  color: #ffffff;
+  flex-basis: 400px;
+  padding: 0px 20px;
+}
+
 button {
   border-radius: 8px;
   border: 2px solid transparent;
-  padding: 10px;
+  padding: 5px 15px;
   margin: 10px;
   font-size: 20px;
   font-weight: 500;
@@ -42,33 +48,29 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-#leaderboard {
-    float: right;
-}
+
 button:hover {
-  background-color: #aaaaaa;
+  background-color: #dddddd;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.menuButton {
+    border-radius: 8px;
+    margin: 20px;
+}
+
 .throwButton {
   border-radius: 8px;
-  border: 2px solid transparent;
-  padding: 5px;
-  margin: 10px;
-  font-size: 20px;
+  padding: 5px 15px;
+  font-size: 24px;
   font-weight: 500;
-  font-family: inherit;
   cursor: pointer;
-  transition: border-color 0.25s;
-  width: 100px;
-  height: 35px;
-  background-color: #608f97;
-  align-items: center;
-  margin-top: 20px;
-  text-align: center;
+  background-color: MediumSeaGreen;
+  color: #ffffff;
 }
 
 .diceArea {
@@ -81,26 +83,20 @@ button:focus-visible {
 
 
 .die {
-  flex: 0 0 auto;              
-  width: 80px;              
-  height: 80px;
-  border-radius: 10px;        
   transition: transform 0.12s;
 }
 
 .diceContainer {
   display: flex;
-  flex-direction: row;          
   justify-content: center;    
   align-items: center;
-  gap: 20px;                  
+  gap: 20px;
   flex-wrap: wrap;        
 }
 
 .die img {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  height: auto;
 }
 
 .throw {
@@ -118,23 +114,27 @@ button:focus-visible {
 .gameArea {
     width: 100%;
     display: flex;
-    gap: 20px; 
-    align-items: flex-start;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    gap: 20px;
 }
 
 .menu {
     width: 100%;
     height: 80px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-items: center;
     background-color: MediumSeaGreen;
 }
 
 .scoreboard {
-    width: 400px;
-    height: 700px;
-    background-color: rgb(193, 193, 193);
-    margin-top: 20px;
-    margin-left: 15px;
-    margin-bottom: 50px;
+    flex-basis: 800px;
+    width: 100%;
+    background-color: #dddddd;
 }
 
 @media (prefers-color-scheme: light) {
@@ -157,17 +157,14 @@ button:focus-visible {
 .grid-table {
   display: grid;
   grid-template-columns: 2fr repeat(4, 1fr);
-  border: 1px solid #e6e6e6;
-  
 }
 
 .cell {
-  padding: 8px;
-  border: 1px solid #f7f7f7;
+  padding: 5px;
+  border: 1px solid #ffffff;
   text-align: center;
-  min-width: 45px;
-  max-width: 55;
-  height: 20px;
+  min-width: 80px;
+  max-height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -182,8 +179,9 @@ button:focus-visible {
 }
 
 .header {
-  background: #94c3d4;
-  font-weight: bold;
+  background: MediumSeaGreen;
+  font-weight: 500;
+  color: #ffffff;
 }
 
 .category {
