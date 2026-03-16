@@ -12,15 +12,15 @@ const App = () => {
   const [scores, setScores] = useState({})
 
 
-const handleThrow = () => {
-  console.log("Throw button clicked")
-  diceRoll.rollDice()
-}
+  const handleThrow = () => {
+    console.log("Throw button clicked")
+    diceRoll.rollDice()
+  }
 
 
   return (
     <div className="game">
-      <div className="menu">
+      <div className="menubar">
         <button id="start">
           <p>Start game</p>
         </button>

@@ -1,6 +1,10 @@
 import { useState } from "react";
 import Die from "die.jsx";
 
+// TODO: laskuri, joka laskee montako kertaa nopat on heitetty. Estää throw-napin painamisen,
+// kun heitot on käytetty loppuun. Resetoi laskuri, kun pelaaja vaihtuu tai peli alkaa uudestaan.
+// TODO: lisää throw-napin alle teksti, joka kertoo montako heittoa on jäljellä 
+
 export default function Dice() {
 
   const [dice, setDice] = useState(
@@ -34,15 +38,15 @@ export default function Dice() {
       <h2>Yatzy</h2>
 
       <div
-        /*style={{
-          display: "flex",
-          gap: "12px",
-          margin: "24px 0",
-          flexWrap: "wrap",
-        }}*/
+      /*style={{
+        display: "flex",
+        gap: "12px",
+        margin: "24px 0",
+        flexWrap: "wrap",
+      }}*/
       >
 
-      { dice.map((die) => (
+        {dice.map((die) => (
           <Die
             key={die.id}
             value={die.value}
@@ -51,19 +55,19 @@ export default function Dice() {
           />
         )
         )
-      }
-    </div>
-    <button
+        }
+      </div>
+      <button
         onClick={rollDice}
-        /*style={{
-          padding: "12px 32px",
-          fontSize: "1.2rem",
-          backgroundColor: "#4ecdc4",
-          color: "white",
-          border: "none",
-          borderRadius: "6px",
-          cursor: "pointer",
-        }}*/
+      /*style={{
+        padding: "12px 32px",
+        fontSize: "1.2rem",
+        backgroundColor: "#4ecdc4",
+        color: "white",
+        border: "none",
+        borderRadius: "6px",
+        cursor: "pointer",
+      }}*/
       >
         Roll dice
       </button>

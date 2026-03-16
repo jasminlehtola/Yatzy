@@ -14,17 +14,20 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
 
 body {
-    margin: 0px;
-    background-image: "../public/vite.svg";
+  margin: 0px;
+  background-image: "../public/vite.svg";
 }
+
 p {
-    margin: 0px;
+  margin: 0px;
 }
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -42,16 +45,54 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 #leaderboard {
-    float: right;
+  float: right;
 }
+
 button:hover {
   background-color: #aaaaaa;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+/* -----------------------------------------
+* Areas
+---------------------------------------------*/
+.menubar {
+  width: 100%;
+  height: 80px;
+  background-color: rgb(167, 175, 218);
+}
+
+.game {
+  width: 100%;
+}
+
+.gameArea {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.scoreboard {
+  width: 600px;
+  height: 700px;
+  background-color: rgb(193, 193, 193);
+  margin-top: 20px;
+  margin-left: 15px;
+  margin-bottom: 50px;
+}
+
+
+
+/* -----------------------------------------
+* Buttons 
+---------------------------------------------*/
 
 .throwButton {
   border-radius: 8px;
@@ -65,89 +106,45 @@ button:focus-visible {
   transition: border-color 0.25s;
   width: 100px;
   height: 35px;
-  background-color: #608f97;
+  background-color: #8ac6d2;
   align-items: center;
   margin-top: 20px;
   text-align: center;
 }
 
+/* -----------------------------------------
+* Custom styles for the dice area and dice container
+---------------------------------------------*/
+
 .diceArea {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 50px;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  width: 100%;
 }
 
-
 .die {
-  flex: 0 0 auto;              
-  width: 80px;              
+  flex: 0 0 auto;
+  width: 80px;
   height: 80px;
-  border-radius: 10px;        
+  border-radius: 10px;
   transition: transform 0.12s;
 }
 
 .diceContainer {
   display: flex;
-  flex-direction: row;          
-  justify-content: center;    
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  gap: 20px;                  
-  flex-wrap: wrap;        
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .die img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-}
-
-.throw {
-    width: 100px;
-    height: 50px;
-    background-color: #7d6363;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.game {
-    width: 100%;
-}
-
-.gameArea {
-    width: 100%;
-    display: flex;
-    gap: 20px; 
-    align-items: flex-start;
-}
-
-.menu {
-    width: 100%;
-    height: 80px;
-    background-color: MediumSeaGreen;
-}
-
-.scoreboard {
-    width: 400px;
-    height: 700px;
-    background-color: rgb(193, 193, 193);
-    margin-top: 20px;
-    margin-left: 15px;
-    margin-bottom: 50px;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
 
 
@@ -158,7 +155,7 @@ button:focus-visible {
   display: grid;
   grid-template-columns: 2fr repeat(4, 1fr);
   border: 1px solid #e6e6e6;
-  
+
 }
 
 .cell {
@@ -194,4 +191,22 @@ button:focus-visible {
 .cell.calculated {
   font-weight: bold;
   background-color: #adadad;
+}
+
+
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+    margin-top: 15px
+  }
 }
