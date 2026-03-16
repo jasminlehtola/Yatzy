@@ -168,6 +168,7 @@ button:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 
 .cell:not(.header):not(.category) {
@@ -184,7 +185,7 @@ button:focus-visible {
 }
 
 .category {
-  text-align: left;
+  text-align: center;
   font-weight: 500;
 }
 
