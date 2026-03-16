@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import './index.css'
 import categories from './data/categories'
 import players from './data/players'
-import Dice from './components/die.jsx'
-//import Dice from './components/diceRoll'
+import Dice from './components/diceRoll.jsx'
 import Scoreboard from './components/scoreboard'
 import Menu from './components/menu.jsx'
 
@@ -11,13 +10,14 @@ const App = () => {
   //const [players, setPlayers] = useState([]) 
   //const [categories, setCategories] = useState([])
   const [scores, setScores] = useState({})
+  const diceRef = useRef()
 
-
-const handleThrow = () => {
-  console.log("Throw button clicked")
-  diceRoll.rollDice()
-}
-
+  const handleThrow = () => {
+    if (diceRef.current){
+      diceRef.current?.roll()
+    console.log("Dice were rolled!")
+    }
+  }
 
   return (
     <div className="game">
@@ -34,16 +34,16 @@ const handleThrow = () => {
 
         <div className="diceArea">
           <div className="throwButton">
-            <throwButton onClick={handleThrow}>Throw</throwButton>
+            <button onClick={handleThrow} id="throwButton">
+             
+              Throw
+            </button>
           </div>
           <div className="diceContainer">
-            <Dice />
+            <Dice ref={diceRef}/>
           </div>
-
-
         </div>
       </div>
-
     </div >
 
   )
