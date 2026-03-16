@@ -12,9 +12,9 @@ const App = () => {
   const diceRef = useRef()
 
   const handleThrow = () => {
-    if (diceRef.current){
+    if (diceRef.current) {
       diceRef.current?.roll()
-    console.log("Dice were rolled!")
+      console.log("Dice were rolled!")
     }
   }
 
@@ -37,12 +37,12 @@ const App = () => {
         <div className="diceArea">
           <div className="throwButton">
             <button onClick={handleThrow} id="throwButton">
-             
+
               Throw
             </button>
           </div>
           <div className="diceContainer">
-            <Dice ref={diceRef}/>
+            <Dice ref={diceRef} />
           </div>
         </div>
       </div>
