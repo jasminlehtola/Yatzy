@@ -55,6 +55,7 @@ function Die({ value, held, onClick }) {
       cursor: "pointer",
       width: "120px",
       height: "120px",
+      border: held ? "6px solid #ff8c00" : "2px solid #ccc", //Oranssi reunus valitulle nopalle
     }} 
     onClick={value === 0 ? undefined : onClick} >
       
