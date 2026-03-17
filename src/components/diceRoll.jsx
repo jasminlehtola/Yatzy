@@ -6,7 +6,7 @@ const Dice = forwardRef((_, ref) => {
   const [dice, setDice] = useState(
     Array.from({ length: 5 }, (_, i) => ({
       id: i + 1,
-      value: 0,
+      value: 6,
       held: false,
     }))
   );
@@ -31,7 +31,7 @@ const Dice = forwardRef((_, ref) => {
   );
 
   function toggleHold(id) {
-    if (rollsLeft === 3 && dice.every((d) => d.value === 0)) return;
+    if (rollsLeft === 3) return; //Estetään noppien lukitseminen ennen ensimmäistä heittoa.
 
     setDice((prev) =>
       prev.map((die) =>
