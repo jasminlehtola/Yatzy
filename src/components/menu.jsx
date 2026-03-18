@@ -80,7 +80,7 @@ const EndGame = ({ onEndGame }) => {
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-              <p>Are you ready to end the game and save results?</p>
+              <p>Are you ready to end the game and save the results?</p>
               <button
                 className="btn btn-primary"
                 onClick={() => onEndGame()}
@@ -101,7 +101,7 @@ const EndGame = ({ onEndGame }) => {
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-              <p>The winner is Player 1 with 100 points. Congratulations!<br /><br />Thank you for playing.</p>
+              <p>The winner is -- with -- points. Congratulations!<br /><br />Thank you for playing.</p>
             </div>
           </div>
         </div>

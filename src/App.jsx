@@ -47,7 +47,7 @@ const App = () => {
 
     localStorage.setItem(
       "yatzyLeaderboard",
-      JSON.stringify(leaderboard.slice(0, 10))
+      JSON.stringify(leaderboard.slice(0, 5))
     )
   }
 
