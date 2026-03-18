@@ -1,11 +1,16 @@
-const existing = JSON.parse(localStorage.getItem("leaderboard")) || []
+const saved = localStorage.getItem("yatzyLeaderboard")
+const leaderboard = saved ? JSON.parse(saved) : []
 
 
-return (
-    <div>
-        <p>Showing top 5 best results:</p>
-        <p> {existing.length > 0 ? existing.slice(0, 5).join(", ") : "No results found."} </p>
-    </div>
-)
+
+const Leaderboard = () => {
+    return (
+        <div>
+            <p>Showing top 5 best results:</p>
+            <p> test </p>
+
+        </div>
+    )
+}
 
 export default Leaderboard

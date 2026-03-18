@@ -5,7 +5,7 @@
 
 // Nopat näkyviin heti aluksi (joku animaatio? noppakuppi?) HEIDI
 
-// Noppa-animaatiot
+// Noppa-animaatiot HEIDI?
 
 
 // **PELILOGIIKKA**:
@@ -13,7 +13,7 @@
 
 // Lue tallennetut pistetiedot localstoragesta, ja näytä ne scoreboardissa JASMIN
 
-// Animaatioräjähdykset, kun pelaaja saa bonuspisteet, ja kun pelaaja lopettaa pelin
+// Animaatioräjähdykset, kun pelaaja saa bonuspisteet, ja kun pelaaja lopettaa pelin JASMIN?
 
 // Disablaa end game/start game kun toista on klikattu. JANINA
 
@@ -21,9 +21,14 @@
 
 
 // **SCOREBOARD**:
-// Tallenna peli localstorageen JASMIN
+// Tallenna peli localstorageen ja näytä siellä JASMIN
 
-// Lisää hover info bonuksen päälle, joka kertoo pistemäärästä 63 tai enemmän
+// Lisää hover info bonuksen päälle, joka kertoo pistemäärästä 63 tai enemmän (?) JASMIN
 
 // **APP**:
 // Musiikit JANINA
+
+/* Jasminin muistilista: 
+- Tallenna pelitiedot localStorageen
+- Lue tallennetut pistetiedot localstoragesta, ja näytä ne scoreboardissa
+*/

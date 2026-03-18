@@ -1,17 +1,6 @@
-import { useState } from "react"
-import * as bootstrap from "bootstrap"
+
 import '../index.css'
-
-
-function saveLeaderboard(newScore) {
-  const existing = JSON.parse(localStorage.getItem("leaderboard")) || []
-
-  existing.push(newScore)
-  existing.sort((a, b) => b.score - a.score)
-  const top5 = existing.slice(0, 5)
-
-  localStorage.setItem("leaderboard", JSON.stringify(top5))
-}
+import Leaderboard from "./leaderboard"
 
 
 const StartGame = ({ setPlayers }) => {
@@ -78,7 +67,8 @@ const StartGame = ({ setPlayers }) => {
   )
 }
 
-const EndGame = () => {
+const EndGame = ({ onEndGame }) => {
+
   return (
     <div id="endgame">
       <button className="menuButton" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">End game</button>
@@ -93,9 +83,9 @@ const EndGame = () => {
               <p>Are you ready to end the game and save results?</p>
               <button
                 className="btn btn-primary"
-                onClick={() => saveLeaderboard({ name: "Player 1", score: 100 })}
-                data-bs-target="#exampleModalToggle2"
+                onClick={() => onEndGame()}
                 data-bs-toggle="modal"
+                data-bs-target="#exampleModalToggle2"
               >
                 Confirm
               </button>
@@ -132,8 +122,7 @@ const OpenLeaderboard = () => {
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-              <p>Showing top 5 best results:</p>
-              <p><strong>1st Player 1 100p<br />2nd Player 2 90p<br />3rd Player 3 80p</strong><br />4th Player 4 70p<br />5th ---</p>
+              <Leaderboard />
             </div>
           </div>
         </div>
@@ -145,13 +134,13 @@ const OpenLeaderboard = () => {
   )
 }
 
-const Menu = ({ setPlayers }) => {
+const Menu = ({ setPlayers, scores, setScores, onEndGame }) => {
   return (
     <div className="menu">
       <h1 id="yatzy">Yatzy</h1>
       <div className="menu">
         <StartGame setPlayers={setPlayers} />
-        <EndGame />
+        <EndGame onEndGame={onEndGame} />
         <OpenLeaderboard />
       </div>
     </div>
