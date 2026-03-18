@@ -1,7 +1,5 @@
-
 import '../index.css'
 import Leaderboard from "./leaderboard"
-
 
 const StartGame = ({ setPlayers }) => {
   const handleSetPlayers = (e) => {
@@ -134,7 +132,7 @@ const OpenLeaderboard = () => {
   )
 }
 
-const Menu = ({ setPlayers, scores, setScores, onEndGame }) => {
+const Menu = ({ setPlayers, onEndGame }) => {
   return (
     <div className="menu">
       <h1 id="yatzy">Yatzy</h1>

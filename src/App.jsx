@@ -71,8 +71,6 @@ const App = () => {
     <div className="game">
       <Menu
         setPlayers={setPlayers}
-        scores={scores}
-        setScores={setScores}
         onEndGame={handleEndGame}
       />
       <div className="gameArea">

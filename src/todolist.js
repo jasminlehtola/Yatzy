@@ -16,6 +16,7 @@
 // Formi voidaan täyttää yksitellen järjestyksessä JANINA
 
 // Peli ei ohjaa mitenkään painamaan New game-nappia, vaan sitä voi vaan alkaa pelaamaan myös ilman pelaajien nimiä.
+// Tummennus/disablaus muuhun pelialueeseen, kunnes pelaaja luonut uuden pelin?
 
 
 // **SCOREBOARD**:
