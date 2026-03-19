@@ -67,6 +67,13 @@ const App = () => {
     }
   }
 
+  const handleEndTurn = () => {
+    if (diceRef.current) {
+      diceRef.current.reset()          // nollaa heitot + nopat
+    }
+    console.log("Turn over")
+  }
+
   return (
     <div className="game">
       <Menu
@@ -85,13 +92,13 @@ const App = () => {
 
         <div className="diceArea">
           <div className="throwButton">
-            <button onClick={handleThrow} id="throwButton">
-
-              Throw
-            </button>
+            <button onClick={handleThrow} id="throwButton"> Throw </button>
           </div>
           <div className="diceContainer">
             <Dice ref={diceRef} />
+          </div>
+          <div className="endTurnButton">
+            <button onClick={handleEndTurn} id="endTurnButton"> End Turn </button>
           </div>
         </div>
       </div>

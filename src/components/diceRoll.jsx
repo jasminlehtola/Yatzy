@@ -25,8 +25,20 @@ const Dice = forwardRef((_, ref) => {
     setRollsLeft((prev) => prev - 1);
   };
 
+  const resetDice = () => {
+    setRollsLeft(3)
+    setDice (
+      Array.from({ length: 5 }, (_, i) => ({
+      id: i + 1,
+      value: 6,
+      held: false,
+    }))
+    )
+  }
+
   useImperativeHandle(ref, () => ({
     roll: rollDice,
+    reset: resetDice,
   })
   );
 
