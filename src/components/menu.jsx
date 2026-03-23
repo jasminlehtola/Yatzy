@@ -1,7 +1,13 @@
+import { useState } from 'react'
 import '../index.css'
-import Leaderboard from "./leaderboard"
+import Leaderboard from './leaderboard'
+import backgroundmusic from '../assets/backgroundmusic.mp3'
+import endgamesound from '../assets/endgamesound.mp3'
 
 const StartGame = ({ setPlayers }) => {
+  const bgaudio = new Audio(backgroundmusic)
+  const playBgaudio = () => {bgaudio.play()}
+
   const handleSetPlayers = (e) => {
     e.preventDefault()
 
@@ -26,7 +32,7 @@ const StartGame = ({ setPlayers }) => {
           <div className="modal-content">
             <div className="modal-header">
               <h2 className="modal-title fs-5">Set players</h2>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button onClick={playBgaudio} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
               <p>Set 1-4 player names.</p>
@@ -52,7 +58,7 @@ const StartGame = ({ setPlayers }) => {
                 <div className="mb-3 row">
                   <label htmlFor="player4" className="col-sm-2 col-form-label">Player 4</label>
                   <div className="col-sm-7">
-                    <input className="form-control" name="player4" type="text" placeholder="Set Player 4's name" />
+                    <input className="form-control" name="player4" type="text" placeholder="Set Player 4's name" disabled/>
                   </div>
                 </div>
                 <button onClick={handleSetPlayers} type="submit" className="btn btn-primary">Start game</button>
@@ -66,6 +72,8 @@ const StartGame = ({ setPlayers }) => {
 }
 
 const EndGame = ({ onEndGame }) => {
+  const endgameaudio = new Audio(endgamesound)
+  const playEndgameaudio = () => {endgameaudio.play()}
 
   return (
     <div id="endgame">
@@ -81,7 +89,7 @@ const EndGame = ({ onEndGame }) => {
               <p>Are you ready to end the game and save the results?</p>
               <button
                 className="btn btn-primary"
-                onClick={() => onEndGame()}
+                onClick={() => onEndGame(), playEndgameaudio}
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModalToggle2"
               >
@@ -133,6 +141,8 @@ const OpenLeaderboard = () => {
 }
 
 const Menu = ({ setPlayers, onEndGame }) => {
+  const [gameOngoing, setGameOngoing] = useState(false) // Tällä pitäisi saada Start- ja End-nappulat disabled vuorollaan
+
   return (
     <div className="menu">
       <h1 id="yatzy">Yatzy</h1>

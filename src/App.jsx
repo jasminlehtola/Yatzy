@@ -1,13 +1,19 @@
 import { useState, useRef, useEffect } from 'react'
 import './index.css'
-import * as bootstrap from "bootstrap"
-import categories from './data/categories'
+import * as bootstrap from 'bootstrap'
+import buttonclick from './assets/buttonclick.mp3'
+import dicethrow from './assets/dicethrow.mp3'
 import Dice from './components/diceRoll.jsx'
 import Scoreboard from './components/scoreboard'
 import Menu from './components/menu.jsx'
+import categories from './data/categories'
 import { calculateGrandTotal } from './utils/calculateScores'
 
 const App = () => {
+  const clicksound = new Audio(buttonclick)
+
+  // Tarvittaisiin eventListener kuuntelemaan button click -eventtejä ja silloin clicksound.play()
+
   const [players, setPlayers] = useState(() => {
     const saved = localStorage.getItem("yatzyGame")
     return saved ? JSON.parse(saved).players : ["Player 1", "Player 2", "Player 3", "Player 4"]
@@ -59,8 +65,10 @@ const App = () => {
     localStorage.removeItem("yatzyGame")
   }
 
+  const throwsound = new Audio(dicethrow)
 
   const handleThrow = () => {
+    throwsound.play()
     if (diceRef.current) {
       diceRef.current?.roll()
       console.log("Dice were rolled!")
@@ -75,7 +83,7 @@ const App = () => {
   }
 
   return (
-    <div className="game">
+    <div className="game" id="game">
       <Menu
         setPlayers={setPlayers}
         onEndGame={handleEndGame}
@@ -103,7 +111,6 @@ const App = () => {
         </div>
       </div>
     </div >
-
   )
 }
 
