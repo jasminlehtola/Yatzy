@@ -153,10 +153,11 @@ const OpenLeaderboard = () => {
 
 const Menu = ({ setPlayers, onEndGame }) => {
   const [gameOngoing, setGameOngoing] = useState(false) // Tällä pitäisi saada Start- ja End-nappulat disabled vuorollaan
-  const bgAudioRef = useRef(new Audio(backgroundmusic))
+  const bgAudioRef = useRef(null)
   const endGameAudioRef = useRef(new Audio(endgamesound))
 
   useEffect(() => {
+    bgAudioRef.current = new Audio(backgroundmusic)
     bgAudioRef.current.volume = 0.4 // volume adjustment for background music
     bgAudioRef.current.loop = true
   }, [])
@@ -167,13 +168,15 @@ const Menu = ({ setPlayers, onEndGame }) => {
 
   const playBgaudio = () => {
     const audio = bgAudioRef.current
-    if (!audio.paused) return
+    if (!audio || !audio.paused) return
     audio.currentTime = 0
     audio.play()
+    console.log("playing bg audio", bgAudioRef.current)
   }
 
   const stopBgaudio = () => {
     const audio = bgAudioRef.current
+    if (!audio) return
     audio.pause()
     audio.currentTime = 0
   }
