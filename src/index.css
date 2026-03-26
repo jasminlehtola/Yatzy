@@ -97,6 +97,13 @@ button:focus-visible {
 
 .die {
   transition: transform 0.12s;
+  cursor: pointer;
+  width: 120px;
+  height: 120px;
+}
+
+.die.held {
+  border: 6px solid #ff8c00;
 }
 
 .diceContainer {
@@ -110,6 +117,7 @@ button:focus-visible {
 .die img {
   width: 100%;
   height: auto;
+  object-fit: contain;
 }
 
 .throw {

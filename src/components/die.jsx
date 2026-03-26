@@ -29,11 +29,6 @@ const Die = (props) => {
 }*/
 
 function Die({ value, held, onClick }) {
-  const styles = {
-   
-
-  };
-
   let dice = dice1
 
   if (value === 2) {
@@ -48,23 +43,15 @@ function Die({ value, held, onClick }) {
     dice = dice6;
   }
 
-
   return (
-    <div className="die"
-      style={{
-      cursor: "pointer",
-      width: "120px",
-      height: "120px",
-      border: held ? "6px solid #ff8c00" : "2px solid #ccc", //Oranssi reunus valitulle nopalle
-    }} 
-    onClick={value === 0 ? undefined : onClick} >
-      
-    {value >= 1 && value <= 6 && (
+    <div className={`die ${held ? "held" : ""}`}
+      onClick={value === 0 ? undefined : onClick} >
+
+      {value >= 1 && value <= 6 && (
         <img
           src={diceImages[value]}
           alt={`noppa näyttää ${value}`}
           className="dice"
-          style={{ width: "100%", height: "100%", objectFit: "contain" }}
         />
       )}
     </div>

@@ -1,10 +1,4 @@
 // **DICE*:
-// Musiikki/ääni nopan heittoon JANINA
-
-// Nappi, joka lopettaa vuoron HEIDI
-
-// Nopat näkyviin heti aluksi (joku animaatio? noppakuppi?) HEIDI
-
 // Noppa-animaatiot HEIDI?
 
 
@@ -20,11 +14,9 @@
 
 
 // **SCOREBOARD**:
-// Tallenna peli localstorageen ja näytä siellä JASMIN
-
 // Lisää hover info bonuksen päälle, joka kertoo pistemäärästä 63 tai enemmän (?) JASMIN
 
 
 // **APP**:
-// Musiikit JANINA
+// Lisää noppien arvontaan pieni viive, jotta ääni ehtii mukaan (pöytäänkolauksen kohdalla tulee numerot)
 
