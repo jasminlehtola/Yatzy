@@ -18,7 +18,7 @@ const Dice = forwardRef((_, ref) => {
     if (rollsLeft <= 0) return;
     setRolling(true)
 
-    // vaihdetaan arvoja animaation aikana
+    // changes (unheld) dice values during the animation
     const interval = setInterval(() => {
       setDice(prev =>
         prev.map(die =>

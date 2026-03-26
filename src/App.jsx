@@ -11,9 +11,8 @@ import categories from './data/categories'
 import { calculateGrandTotal } from './utils/calculateScores'
 
 const App = () => {
-  const clicksound = new Audio(buttonclick)
-
-  // Tarvittaisiin eventListener kuuntelemaan button click -eventtejä ja silloin clicksound.play()
+  const throwSoundRef = useRef(new Audio(diceThrowSound))
+  const clickSoundRef = useRef(new Audio(buttonclick))
 
   const [players, setPlayers] = useState(() => {
     const saved = localStorage.getItem("yatzyGame")
@@ -24,6 +23,15 @@ const App = () => {
     return saved ? JSON.parse(saved).scores : {}
   })
   const diceRef = useRef()
+
+
+  useEffect(() => {
+    throwSoundRef.current.volume = 1 // volume adjustment for dice throw sound
+  }, [])
+
+  useEffect(() => {
+    clickSoundRef.current.volume = 0.3 // volume adjustment for button click sound
+  }, [])
 
   // Saves to localStorage everytime when players or scores change
   useEffect(() => {
@@ -66,14 +74,12 @@ const App = () => {
     localStorage.removeItem("yatzyGame")
   }
 
-  const throwsound = new Audio(diceThrowSound)
-
   const handleThrow = () => {
     if (diceRef.current && diceRef.current.isRolling()) {
       return
     }
-    throwsound.currentTime = 0
-    throwsound.play()
+    throwSoundRef.current.currentTime = 0
+    throwSoundRef.current.play()
 
     diceRef.current?.roll()
     console.log("Dice were rolled!")

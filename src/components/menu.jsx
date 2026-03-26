@@ -1,13 +1,10 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import '../index.css'
 import Leaderboard from './leaderboard'
 import backgroundmusic from '../assets/backgroundmusic.mp3'
 import endgamesound from '../assets/endgamesound.mp3'
 
-const StartGame = ({ setPlayers }) => {
-  const bgaudio = new Audio(backgroundmusic)
-  const playBgaudio = () => {bgaudio.play()}
-
+const StartGame = ({ setPlayers, playBgaudio }) => {
   const handleSetPlayers = (e) => {
     e.preventDefault()
 
@@ -58,7 +55,7 @@ const StartGame = ({ setPlayers }) => {
                 <div className="mb-3 row">
                   <label htmlFor="player4" className="col-sm-2 col-form-label">Player 4</label>
                   <div className="col-sm-7">
-                    <input className="form-control" name="player4" type="text" placeholder="Set Player 4's name" disabled/>
+                    <input className="form-control" name="player4" type="text" placeholder="Set Player 4's name" disabled />
                   </div>
                 </div>
                 <button onClick={handleSetPlayers} type="submit" className="btn btn-primary">Start game</button>
@@ -71,10 +68,7 @@ const StartGame = ({ setPlayers }) => {
   )
 }
 
-const EndGame = ({ onEndGame }) => {
-  const endgameaudio = new Audio(endgamesound)
-  const playEndgameaudio = () => {endgameaudio.play()}
-
+const EndGame = ({ onEndGame, stopBgaudio, playEndgameaudio }) => {
   return (
     <div id="endgame">
       <button className="menuButton" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">End game</button>
@@ -89,7 +83,11 @@ const EndGame = ({ onEndGame }) => {
               <p>Are you ready to end the game and save the results?</p>
               <button
                 className="btn btn-primary"
-                onClick={() => onEndGame(), playEndgameaudio}
+                onClick={() => {
+                  onEndGame()
+                  stopBgaudio()
+                  playEndgameaudio()
+                }}
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModalToggle2"
               >
@@ -142,13 +140,45 @@ const OpenLeaderboard = () => {
 
 const Menu = ({ setPlayers, onEndGame }) => {
   const [gameOngoing, setGameOngoing] = useState(false) // Tällä pitäisi saada Start- ja End-nappulat disabled vuorollaan
+  const bgAudioRef = useRef(new Audio(backgroundmusic))
+  const endGameAudioRef = useRef(new Audio(endgamesound))
+
+  useEffect(() => {
+    bgAudioRef.current.volume = 0.4 // volume adjustment for background music
+    bgAudioRef.current.loop = true
+  }, [])
+
+  useEffect(() => {
+    endGameAudioRef.current.volume = 0.2 // volume adjustment for end game sound
+  }, [])
+
+  const playBgaudio = () => {
+    const audio = bgAudioRef.current
+    if (!audio.paused) return
+    audio.currentTime = 0
+    audio.play()
+  }
+
+  const stopBgaudio = () => {
+    const audio = bgAudioRef.current
+    audio.pause()
+    audio.currentTime = 0
+  }
+
+  const playEndgameaudio = () => {
+    const audio = endGameAudioRef.current
+
+    audio.currentTime = 0
+    audio.play()
+  }
+
 
   return (
     <div className="menu">
       <h1 id="yatzy">Yatzy</h1>
       <div className="menu">
-        <StartGame setPlayers={setPlayers} />
-        <EndGame onEndGame={onEndGame} />
+        <StartGame setPlayers={setPlayers} playBgaudio={playBgaudio} />
+        <EndGame onEndGame={onEndGame} stopBgaudio={stopBgaudio} playEndgameaudio={playEndgameaudio} />
         <OpenLeaderboard />
       </div>
     </div>

@@ -1,5 +1,5 @@
-// **DICE*:
-
+// **MENU*:
+// Muokkaa endgamen winner is -tekstiä, jotta se hakee voittajan nimen ja pistemäärän.
 
 
 // **PELILOGIIKKA**:
