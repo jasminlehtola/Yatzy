@@ -12,38 +12,59 @@ const Dice = forwardRef((_, ref) => {
   );
 
   const [rollsLeft, setRollsLeft] = useState(3);
+  const [rolling, setRolling] = useState(false);
 
   const rollDice = () => {
     if (rollsLeft <= 0) return;
-    setDice(prev =>
-      prev.map(die =>
-        die.held
-          ? die                              // True -> pidetään noppa
-          : { ...die, value: Math.floor(Math.random() * 6) + 1 } // False -> heitetään uudelleen
+    setRolling(true)
+
+    // vaihdetaan arvoja animaation aikana
+    const interval = setInterval(() => {
+      setDice(prev =>
+        prev.map(die =>
+          die.held
+            ? die
+            : { ...die, value: Math.floor(Math.random() * 6) + 1 }
+        )
       )
-    );
-    setRollsLeft((prev) => prev - 1);
-  };
+    }, 300)
+
+    setTimeout(() => {
+      clearInterval(interval)
+
+      setDice(prev =>
+        prev.map(die =>
+          die.held
+            ? die                              // True -> pidetään noppa
+            : { ...die, value: Math.floor(Math.random() * 6) + 1 } // False -> heitetään uudelleen
+        )
+      );
+
+      setRollsLeft((prev) => prev - 1);
+      setRolling(false);
+    }, 2000);
+  }
 
   const resetDice = () => {
     setRollsLeft(3)
-    setDice (
+    setDice(
       Array.from({ length: 5 }, (_, i) => ({
-      id: i + 1,
-      value: 6,
-      held: false,
-    }))
+        id: i + 1,
+        value: 6,
+        held: false,
+      }))
     )
   }
 
   useImperativeHandle(ref, () => ({
     roll: rollDice,
     reset: resetDice,
+    isRolling: () => rolling
   })
   );
 
   function toggleHold(id) {
-    if (rollsLeft === 3) return; //Estetään noppien lukitseminen ennen ensimmäistä heittoa.
+    if (rollsLeft === 3 || rolling) return; //Estetään noppien lukitseminen ennen ensimmäistä heittoa.
 
     setDice((prev) =>
       prev.map((die) =>
@@ -61,6 +82,7 @@ const Dice = forwardRef((_, ref) => {
             value={die.value}
             held={die.held}
             onClick={() => toggleHold(die.id)}
+            rolling={rolling}
           />
         )
         )

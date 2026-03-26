@@ -2,7 +2,8 @@ import { useState, useRef, useEffect } from 'react'
 import './index.css'
 import * as bootstrap from 'bootstrap'
 import buttonclick from './assets/buttonclick.mp3'
-import dicethrow from './assets/dicethrow.mp3'
+//import dicethrow from './assets/dicethrow.mp3'
+import diceThrowSound from './assets/diceThrowSound.mp3'
 import Dice from './components/diceRoll.jsx'
 import Scoreboard from './components/scoreboard'
 import Menu from './components/menu.jsx'
@@ -65,15 +66,19 @@ const App = () => {
     localStorage.removeItem("yatzyGame")
   }
 
-  const throwsound = new Audio(dicethrow)
+  const throwsound = new Audio(diceThrowSound)
 
   const handleThrow = () => {
-    throwsound.play()
-    if (diceRef.current) {
-      diceRef.current?.roll()
-      console.log("Dice were rolled!")
+    if (diceRef.current && diceRef.current.isRolling()) {
+      return
     }
+    throwsound.currentTime = 0
+    throwsound.play()
+
+    diceRef.current?.roll()
+    console.log("Dice were rolled!")
   }
+
 
   const handleEndTurn = () => {
     if (diceRef.current) {
@@ -81,6 +86,7 @@ const App = () => {
     }
     console.log("Turn over")
   }
+
 
   return (
     <div className="game" id="game">
@@ -113,6 +119,7 @@ const App = () => {
     </div >
   )
 }
+
 
 export default App
 

@@ -1,5 +1,5 @@
 // **DICE*:
-// Noppa-animaatiot HEIDI?
+
 
 
 // **PELILOGIIKKA**:
@@ -18,5 +18,4 @@
 
 
 // **APP**:
-// Lisää noppien arvontaan pieni viive, jotta ääni ehtii mukaan (pöytäänkolauksen kohdalla tulee numerot)
-
+// pelin pelaaminen näppäinkomennoilla

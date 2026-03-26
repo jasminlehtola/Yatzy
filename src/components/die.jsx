@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import dice1 from '../assets/dice-six-faces-one.png';
 import dice2 from '../assets/dice-six-faces-two.png';
 import dice3 from '../assets/dice-six-faces-three.png';
@@ -28,7 +29,7 @@ const Die = (props) => {
 
 }*/
 
-function Die({ value, held, onClick }) {
+function Die({ value, held, onClick, rolling }) {
   let dice = dice1
 
   if (value === 2) {
@@ -44,8 +45,27 @@ function Die({ value, held, onClick }) {
   }
 
   return (
-    <div className={`die ${held ? "held" : ""}`}
-      onClick={value === 0 ? undefined : onClick} >
+    <motion.div
+      className={`die ${held ? "held" : ""}`}
+      onClick={value === 0 ? undefined : onClick}
+
+      animate={
+        rolling && !held
+          ? { rotate: [0, 2200] }
+          : { rotate: 0 }
+      }
+      transition={
+        rolling && !held
+          ? {
+            duration: 3.2,
+            ease: "linear"
+          }
+          : {
+            duration: 0.5,
+            ease: "easeOut",
+          }
+      }
+    >
 
       {value >= 1 && value <= 6 && (
         <img
@@ -54,12 +74,14 @@ function Die({ value, held, onClick }) {
           className="dice"
         />
       )}
-    </div>
+    </motion.div>
+  )
 
-    /*onClick={onClick}>
-      <img src={dice} className="dice" />
-    </div>*/
-  );
+
+  /*onClick={onClick}>
+    <img src={dice} className="dice" />
+  </div>*/
+
 }
 
 export default Die
