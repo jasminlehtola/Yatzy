@@ -9,6 +9,7 @@ import Scoreboard from './components/scoreboard'
 import Menu from './components/menu.jsx'
 import categories from './data/categories'
 import { calculateGrandTotal } from './utils/calculateScores'
+import SoundButton from './components/SoundButton.jsx'
 
 const App = () => {
   const throwSoundRef = useRef(new Audio(diceThrowSound))
@@ -112,13 +113,13 @@ const App = () => {
 
         <div className="diceArea">
           <div className="throwButton">
-            <button onClick={handleThrow} id="throwButton"> Throw </button>
+            <SoundButton onClick={handleThrow} id="throwButton"> Throw </SoundButton>
           </div>
           <div className="diceContainer">
             <Dice ref={diceRef} />
           </div>
           <div className="endTurnButton">
-            <button onClick={handleEndTurn} id="endTurnButton"> End Turn </button>
+            <SoundButton onClick={handleEndTurn} id="endTurnButton"> End Turn </SoundButton>
           </div>
         </div>
       </div>

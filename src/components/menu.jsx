@@ -3,6 +3,7 @@ import '../index.css'
 import Leaderboard from './leaderboard'
 import backgroundmusic from '../assets/backgroundmusic.mp3'
 import endgamesound from '../assets/endgamesound.mp3'
+import SoundButton from './SoundButton.jsx'
 
 const StartGame = ({ setPlayers, playBgaudio }) => {
   const handleSetPlayers = (e) => {
@@ -23,13 +24,16 @@ const StartGame = ({ setPlayers, playBgaudio }) => {
 
   return (
     <div id="startgame">
-      <button className="menuButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Start game</button>
+      <SoundButton className="menuButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Start game
+      </SoundButton>
       <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
               <h2 className="modal-title fs-5">Set players</h2>
-              <button onClick={playBgaudio} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <SoundButton onClick={playBgaudio} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close">
+              </SoundButton>
             </div>
             <div className="modal-body">
               <p>Set 1-4 player names.</p>
@@ -58,7 +62,9 @@ const StartGame = ({ setPlayers, playBgaudio }) => {
                     <input className="form-control" name="player4" type="text" placeholder="Set Player 4's name" disabled />
                   </div>
                 </div>
-                <button onClick={handleSetPlayers} type="submit" className="btn btn-primary">Start game</button>
+                <SoundButton onClick={handleSetPlayers} type="submit" className="btn btn-primary">
+                  Start game
+                </SoundButton>
               </form>
             </div>
           </div>
@@ -71,17 +77,20 @@ const StartGame = ({ setPlayers, playBgaudio }) => {
 const EndGame = ({ onEndGame, stopBgaudio, playEndgameaudio }) => {
   return (
     <div id="endgame">
-      <button className="menuButton" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">End game</button>
+      <SoundButton className="menuButton" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+        End game
+      </SoundButton>
       <div className="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
               <h2 className="modal-title fs-5" id="exampleModalToggleLabel">Ending game</h2>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <SoundButton type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close">
+              </SoundButton>
             </div>
             <div className="modal-body">
               <p>Are you ready to end the game and save the results?</p>
-              <button
+              <SoundButton
                 className="btn btn-primary"
                 onClick={() => {
                   onEndGame()
@@ -92,7 +101,7 @@ const EndGame = ({ onEndGame, stopBgaudio, playEndgameaudio }) => {
                 data-bs-target="#exampleModalToggle2"
               >
                 Confirm
-              </button>
+              </SoundButton>
             </div>
           </div>
         </div>
@@ -102,7 +111,8 @@ const EndGame = ({ onEndGame, stopBgaudio, playEndgameaudio }) => {
           <div className="modal-content">
             <div className="modal-header">
               <h2 className="modal-title fs-5" id="exampleModalToggleLabel2">Game ended</h2>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <SoundButton type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close">
+              </SoundButton>
             </div>
             <div className="modal-body">
               <p>The winner is -- with -- points. Congratulations!<br /><br />Thank you for playing.</p>
@@ -117,13 +127,16 @@ const EndGame = ({ onEndGame, stopBgaudio, playEndgameaudio }) => {
 const OpenLeaderboard = () => {
   return (
     <div id="openLeaderboard">
-      <button type="button" className="menuButton" data-bs-toggle="modal" data-bs-target="#exampleModal">Leaderboard</button>
+      <SoundButton type="button" className="menuButton" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Leaderboard
+      </SoundButton>
       <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">Leaderboard</h1>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <SoundButton type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close">
+              </SoundButton>
             </div>
             <div className="modal-body">
               <Leaderboard />
