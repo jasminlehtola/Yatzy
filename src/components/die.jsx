@@ -29,7 +29,7 @@ const Die = (props) => {
 
 }*/
 
-function Die({ value, held, onClick, rolling }) {
+function Die({ value, held, onClick, rolling, isFocused = false }) {
   let dice = dice1
 
   if (value === 2) {
@@ -46,7 +46,8 @@ function Die({ value, held, onClick, rolling }) {
 
   return (
     <motion.div
-      className={`die ${held ? "held" : ""}`}
+      className={`die ${held ? "held" : ""} ${isFocused ? "focused" : ""}`}
+      tabIndex={-1}
       onClick={value === 0 ? undefined : onClick}
 
       animate={
@@ -76,11 +77,6 @@ function Die({ value, held, onClick, rolling }) {
       )}
     </motion.div>
   )
-
-
-  /*onClick={onClick}>
-    <img src={dice} className="dice" />
-  </div>*/
 
 }
 

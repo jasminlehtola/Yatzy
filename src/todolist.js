@@ -18,4 +18,4 @@
 
 
 // **APP**:
-// pelin pelaaminen näppäinkomennoilla
+// pelin pelaaminen näppäinkomennoilla -> Nopat toimii näppäimillä

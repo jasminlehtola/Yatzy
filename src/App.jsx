@@ -86,45 +86,66 @@ const App = () => {
     console.log("Dice were rolled!")
   }
 
-
   const handleEndTurn = () => {
     if (diceRef.current) {
-      diceRef.current.reset()          // nollaa heitot + nopat
+      diceRef.current.reset()          // resets throws and dice
     }
     console.log("Turn over")
   }
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.target.tagName === 'INPUT' || //Prevent throwing when the input area is activated.
+        event.target.tagName === 'TEXTAREA' ||
+        event.target.isContentEditable) {
+        return;
+      }
+      if (event.key === ' ') {
+        event.preventDefault(); //Prevent scrolling the page
+        handleThrow();
+      }
+      else if (event.key.toLowerCase() === 'e') {
+        event.preventDefault();
+        handleEndTurn();
+    }
+  };
+    window.addEventListener('keydown', handleKeyDown);
+  return () => {
+    window.removeEventListener('keydown', handleKeyDown);
+  };
+}, [handleThrow], [handleEndTurn]);
 
-  return (
-    <div className="game" id="game">
-      <Menu
-        setPlayers={setPlayers}
-        onEndGame={handleEndGame}
-      />
-      <div className="gameArea">
-        <div className="scoreboard">
-          <Scoreboard
-            players={players}
-            categories={categories}
-            scores={scores}
-            setScores={setScores}
-          />
+return (
+  <div className="game" id="game">
+    <Menu
+      setPlayers={setPlayers}
+      onEndGame={handleEndGame}
+    />
+    <div className="gameArea">
+      <div className="scoreboard">
+        <Scoreboard
+          players={players}
+          categories={categories}
+          scores={scores}
+          setScores={setScores}
+        />
+      </div>
+
+      <div className="diceArea">
+        <div className="throwButton">
+          <SoundButton onClick={handleThrow} id="throwButton"> Throw (Spacebar) </SoundButton>
         </div>
-
-        <div className="diceArea">
-          <div className="throwButton">
-            <SoundButton onClick={handleThrow} id="throwButton"> Throw </SoundButton>
-          </div>
-          <div className="diceContainer">
-            <Dice ref={diceRef} />
-          </div>
-          <div className="endTurnButton">
-            <SoundButton onClick={handleEndTurn} id="endTurnButton"> End Turn </SoundButton>
-          </div>
+        <div className="diceContainer">
+          <Dice ref={diceRef} />
+        </div>
+        <div className="endTurnButton">
+          <SoundButton onClick={handleEndTurn} id="endTurnButton"> End Turn (E) </SoundButton>
         </div>
       </div>
-    </div >
-  )
+    </div>
+  </div >
+)
+
 }
 
 

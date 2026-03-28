@@ -106,12 +106,19 @@ button:focus-visible {
   border: 6px solid #ff8c00;
 }
 
+.die.focused{
+  outline: 5px solid #00ff1e;
+  outline-offset: 6px;
+  box-shadow: 0 0 15px rgba(3, 242, 158, 0.829);
+}
+
 .diceContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
+  outline: none
 }
 
 .die img {

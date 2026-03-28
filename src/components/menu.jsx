@@ -20,6 +20,7 @@ const StartGame = ({ setPlayers, playBgaudio }) => {
 
     setPlayers(players)
     console.log(players)
+    playBgaudio()
   }
 
   return (
@@ -62,7 +63,7 @@ const StartGame = ({ setPlayers, playBgaudio }) => {
                     <input className="form-control" name="player4" type="text" placeholder="Set Player 4's name" disabled />
                   </div>
                 </div>
-                <SoundButton onClick={handleSetPlayers} type="submit" className="btn btn-primary">
+                <SoundButton onClick={handleSetPlayers} type="button" className="btn btn-primary" data-bs-dismiss="modal">
                   Start game
                 </SoundButton>
               </form>
