@@ -14,6 +14,7 @@ import SoundButton from './components/SoundButton.jsx'
 const App = () => {
   const throwSoundRef = useRef(new Audio(diceThrowSound))
   const clickSoundRef = useRef(new Audio(buttonclick))
+  const [currentPlayer, setCurrentPlayer] = useState(0)
 
   const [players, setPlayers] = useState(() => {
     const saved = localStorage.getItem("yatzyGame")
@@ -46,6 +47,7 @@ const App = () => {
   }, [players, scores])
 
 
+  // Saves the current game result to the leaderboard in localStorage
   const saveToLeaderboard = () => {
     const saved = localStorage.getItem("yatzyLeaderboard")
     const leaderboard = saved ? JSON.parse(saved) : []
@@ -58,7 +60,6 @@ const App = () => {
         score: score
       })
     })
-
     leaderboard.sort((a, b) => b.score - a.score)
 
     localStorage.setItem(
@@ -90,9 +91,21 @@ const App = () => {
     if (diceRef.current) {
       diceRef.current.reset()          // resets throws and dice
     }
+    setCurrentPlayer((prev) => {
+      const currentIndexInActive = activePlayers.findIndex(p => p.index === prev)
+      const nextPlayer = activePlayers[(currentIndexInActive + 1) % activePlayers.length]
+      return nextPlayer.index
+    })
     console.log("Turn over")
   }
 
+  // Filter out active players for turn rotation
+  const activePlayers = players
+    .map((p, i) => ({ name: p, index: i }))
+    .filter(p => p.name && p.name.trim() !== "")
+
+
+  // Keyboard shortcuts for throwing dice and ending turn
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.target.tagName === 'INPUT' || //Prevent throwing when the input area is activated.
@@ -135,8 +148,11 @@ const App = () => {
         </div>
 
         <div className="diceArea">
+          <p className="currentPlayer">
+            Turn: <strong>{players[currentPlayer]}</strong>
+          </p>
           <div className="throwButton">
-            <SoundButton onClick={handleThrow} id="throwButton" > Throw (Spacebar) </SoundButton>
+            <SoundButton onClick={handleThrow} id="throwButton" > Throw (Space) </SoundButton>
           </div>
           <div className="diceContainer">
             <Dice ref={diceRef} />
@@ -148,7 +164,6 @@ const App = () => {
       </div>
     </div >
   )
-
 }
 
 

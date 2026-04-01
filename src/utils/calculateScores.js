@@ -24,8 +24,8 @@ const calculateGrandTotal = (scores, playerIndex) => {
     let lowerTotal = 0
     lowerTotal += scores["Pair"]?.[playerIndex] || 0
     lowerTotal += scores["Two pair"]?.[playerIndex] || 0
-    lowerTotal += scores["Three of a kind"]?.[playerIndex] || 0
-    lowerTotal += scores["Four of a kind"]?.[playerIndex] || 0
+    lowerTotal += scores["3 of a kind"]?.[playerIndex] || 0
+    lowerTotal += scores["4 of a kind"]?.[playerIndex] || 0
     lowerTotal += scores["Small straight"]?.[playerIndex] || 0
     lowerTotal += scores["Large straight"]?.[playerIndex] || 0
     lowerTotal += scores["Full house"]?.[playerIndex] || 0
