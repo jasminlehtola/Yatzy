@@ -121,6 +121,8 @@ const App = () => {
       <Menu
         setPlayers={setPlayers}
         onEndGame={handleEndGame}
+        players={players}
+        scores={scores}
       />
       <div className="gameArea">
         <div className="scoreboard">
@@ -134,7 +136,7 @@ const App = () => {
 
         <div className="diceArea">
           <div className="throwButton">
-            <SoundButton onClick={handleThrow} id="throwButton" disabled={diceRef.current?.getRollsLeft?.() === 0}> Throw (Spacebar) </SoundButton>
+            <SoundButton onClick={handleThrow} id="throwButton" > Throw (Spacebar) </SoundButton>
           </div>
           <div className="diceContainer">
             <Dice ref={diceRef} />

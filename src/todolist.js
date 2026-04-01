@@ -18,5 +18,3 @@
 // pelin pelaaminen näppäinkomennoilla -> Nopat toimii näppäimillä
 
 // auto repeat taustamusiikkiin, vissiin sammuu nyt itsekseen --> vaikuttaa kyllä toimivan
-
-// noppien heittoääni ei saa tulla jos noppia ei voi enää heittää

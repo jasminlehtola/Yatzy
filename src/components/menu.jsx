@@ -4,6 +4,7 @@ import Leaderboard from './leaderboard'
 import backgroundmusic from '../assets/backgroundmusic.mp3'
 import endgamesound from '../assets/endgamesound.mp3'
 import SoundButton from './SoundButton.jsx'
+import { calculateGrandTotal } from '../utils/calculateScores'
 
 const StartGame = ({ setPlayers, playBgaudio }) => {
   const handleSetPlayers = (e) => {
@@ -75,7 +76,7 @@ const StartGame = ({ setPlayers, playBgaudio }) => {
   )
 }
 
-const EndGame = ({ onEndGame, stopBgaudio, playEndgameaudio }) => {
+const EndGame = ({ onEndGame, stopBgaudio, playEndgameaudio, winner }) => {
   return (
     <div id="endgame">
       <SoundButton className="menuButton" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
@@ -94,7 +95,6 @@ const EndGame = ({ onEndGame, stopBgaudio, playEndgameaudio }) => {
               <SoundButton
                 className="btn btn-primary"
                 onClick={() => {
-                  onEndGame()
                   stopBgaudio()
                   playEndgameaudio()
                 }}
@@ -112,11 +112,22 @@ const EndGame = ({ onEndGame, stopBgaudio, playEndgameaudio }) => {
           <div className="modal-content">
             <div className="modal-header">
               <h2 className="modal-title fs-5" id="exampleModalToggleLabel2">Game ended</h2>
-              <SoundButton type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close">
+              <SoundButton type="button" className="btn-close" data-bs-dismiss="modal" onClick={onEndGame} aria-label="Close">
               </SoundButton>
             </div>
             <div className="modal-body">
-              <p>The winner is -- with -- points. Congratulations!<br /><br />Thank you for playing.</p>
+              <p>
+                {winner ? (
+                  <>
+                    The winner is <strong>{winner.name}</strong> with{" "}
+                    <strong>{winner.score}</strong> points. Congratulations!
+                    <br /><br />
+                    Thank you for playing.
+                  </>
+                ) : (
+                  "No winner yet"
+                )}
+              </p>
             </div>
           </div>
         </div>
@@ -152,7 +163,7 @@ const OpenLeaderboard = () => {
   )
 }
 
-const Menu = ({ setPlayers, onEndGame }) => {
+const Menu = ({ setPlayers, onEndGame, players, scores }) => {
   const [gameOngoing, setGameOngoing] = useState(false) // Tällä pitäisi saada Start- ja End-nappulat disabled vuorollaan
   const bgAudioRef = useRef(null)
   const endGameAudioRef = useRef(new Audio(endgamesound))
@@ -189,13 +200,34 @@ const Menu = ({ setPlayers, onEndGame }) => {
     audio.play()
   }
 
+  const getWinner = () => {
+    if (!players || players.length === 0) return null
+    let bestScore = -1
+    let winnerName = ""
+
+    players.forEach((player, index) => {
+      const score = calculateGrandTotal(scores, index)
+
+      if (score > bestScore) {
+        bestScore = score
+        winnerName = player
+      }
+    })
+    if (bestScore < 0) return null
+
+    return { name: winnerName, score: bestScore }
+  }
+
+  const winner = getWinner()
+
 
   return (
     <div className="menu">
       <h1 id="yatzy">Yatzy</h1>
       <div className="menu">
         <StartGame setPlayers={setPlayers} playBgaudio={playBgaudio} />
-        <EndGame onEndGame={onEndGame} stopBgaudio={stopBgaudio} playEndgameaudio={playEndgameaudio} />
+        <EndGame onEndGame={onEndGame} stopBgaudio={stopBgaudio} playEndgameaudio={playEndgameaudio}
+          winner={winner} />
         <OpenLeaderboard />
       </div>
     </div>
