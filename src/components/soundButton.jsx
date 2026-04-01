@@ -10,7 +10,6 @@ const SoundButton = ({ onClick, children, ...props }) => {
 
     const handleClick = (e) => {
         const audio = clickSoundRef.current
-
         audio.currentTime = 0
         audio.play()
 
@@ -18,7 +17,8 @@ const SoundButton = ({ onClick, children, ...props }) => {
     }
 
     return (
-        <button {...props} onClick={handleClick}>
+        <button {...props}
+            onClick={handleClick}>
             {children}
         </button>
     )

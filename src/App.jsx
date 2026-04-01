@@ -76,9 +76,9 @@ const App = () => {
   }
 
   const handleThrow = () => {
-    if (diceRef.current && diceRef.current.isRolling()) {
-      return
-    }
+    if (diceRef.current?.getRollsLeft?.() === 0) return
+    if (diceRef.current?.isRolling?.()) return
+
     throwSoundRef.current.currentTime = 0
     throwSoundRef.current.play()
 
@@ -105,46 +105,47 @@ const App = () => {
         handleThrow();
       }
       else if (event.key.toLowerCase() === 'e') {
-        event.preventDefault();
-        handleEndTurn();
-    }
-  };
-    window.addEventListener('keydown', handleKeyDown);
-  return () => {
-    window.removeEventListener('keydown', handleKeyDown);
-  };
-}, [handleThrow], [handleEndTurn]);
+        event.preventDefault()
+        handleEndTurn()
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    };
+  }, [handleThrow], [handleEndTurn])
 
-return (
-  <div className="game" id="game">
-    <Menu
-      setPlayers={setPlayers}
-      onEndGame={handleEndGame}
-    />
-    <div className="gameArea">
-      <div className="scoreboard">
-        <Scoreboard
-          players={players}
-          categories={categories}
-          scores={scores}
-          setScores={setScores}
-        />
-      </div>
 
-      <div className="diceArea">
-        <div className="throwButton">
-          <SoundButton onClick={handleThrow} id="throwButton"> Throw (Spacebar) </SoundButton>
+  return (
+    <div className="game" id="game">
+      <Menu
+        setPlayers={setPlayers}
+        onEndGame={handleEndGame}
+      />
+      <div className="gameArea">
+        <div className="scoreboard">
+          <Scoreboard
+            players={players}
+            categories={categories}
+            scores={scores}
+            setScores={setScores}
+          />
         </div>
-        <div className="diceContainer">
-          <Dice ref={diceRef} />
-        </div>
-        <div className="endTurnButton">
-          <SoundButton onClick={handleEndTurn} id="endTurnButton"> End Turn (E) </SoundButton>
+
+        <div className="diceArea">
+          <div className="throwButton">
+            <SoundButton onClick={handleThrow} id="throwButton" disabled={diceRef.current?.getRollsLeft?.() === 0}> Throw (Spacebar) </SoundButton>
+          </div>
+          <div className="diceContainer">
+            <Dice ref={diceRef} />
+          </div>
+          <div className="endTurnButton">
+            <SoundButton onClick={handleEndTurn} id="endTurnButton"> End Turn (E) </SoundButton>
+          </div>
         </div>
       </div>
-    </div>
-  </div >
-)
+    </div >
+  )
 
 }
 

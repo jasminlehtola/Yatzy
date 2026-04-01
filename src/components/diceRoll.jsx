@@ -14,7 +14,7 @@ const Dice = forwardRef((_, ref) => {
   const [rollsLeft, setRollsLeft] = useState(3);
   const [rolling, setRolling] = useState(false);
   const [focusedIndex, setFocusedIndex] = useState(0);
-  const [keyboardMode, setKeyboardMode ] = useState(false);
+  const [keyboardMode, setKeyboardMode] = useState(false);
 
   const dieRefs = useRef([]);   // Set ref for each die
   const containerRef = useRef(null);
@@ -48,9 +48,9 @@ const Dice = forwardRef((_, ref) => {
 
       setRollsLeft((prev) => prev - 1);
       setRolling(false);
-      setKeyboardMode(true); 
+      setKeyboardMode(true);
       setFocusedIndex(0);
-      if (containerRef.current){
+      if (containerRef.current) {
         containerRef.current.focus();
       }
     }, 2000);
@@ -72,7 +72,8 @@ const Dice = forwardRef((_, ref) => {
   useImperativeHandle(ref, () => ({
     roll: rollDice,
     reset: resetDice,
-    isRolling: () => rolling
+    isRolling: () => rolling,
+    getRollsLeft: () => rollsLeft
   })
   );
 
@@ -86,35 +87,35 @@ const Dice = forwardRef((_, ref) => {
     );
   }
   // Choose a die with keyboard: arrow buttons + enter
-    const handleKeyDown = useCallback((event) => {
-      if (rolling) return;
+  const handleKeyDown = useCallback((event) => {
+    if (rolling) return;
 
-      if (event.key === 'ArrowLeft'||event.key === 'ArrowRight') {
-        setKeyboardMode(true);
-      }
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      setKeyboardMode(true);
+    }
 
-      switch (event.key) {
-        case 'ArrowRight':
-          event.preventDefault();
-          setFocusedIndex((prev) => (prev + 1) % 5);
-          break;
+    switch (event.key) {
+      case 'ArrowRight':
+        event.preventDefault();
+        setFocusedIndex((prev) => (prev + 1) % 5);
+        break;
 
-        case 'ArrowLeft':
-          event.preventDefault();
-          setFocusedIndex((prev) => (prev - 1 + 5) % 5);
-          break;
+      case 'ArrowLeft':
+        event.preventDefault();
+        setFocusedIndex((prev) => (prev - 1 + 5) % 5);
+        break;
 
-        case 'Enter': //Hold a die
-          event.preventDefault();
-          toggleHold(focusedIndex);
-          break;
+      case 'Enter': //Hold a die
+        event.preventDefault();
+        toggleHold(focusedIndex);
+        break;
 
-        default:
-          break;
-      }
-    }, [rolling, focusedIndex, toggleHold]);
+      default:
+        break;
+    }
+  }, [rolling, focusedIndex, toggleHold]);
 
-    useEffect(() => {
+  useEffect(() => {
     const container = containerRef.current;
     if (container) {
       container.addEventListener('keydown', handleKeyDown);
@@ -132,24 +133,25 @@ const Dice = forwardRef((_, ref) => {
   useEffect(() => {
     if (keyboardMode && dieRefs.current[focusedIndex]) {
       dieRefs.current[focusedIndex].focus();
-  }}, [focusedIndex, keyboardMode]);
+    }
+  }, [focusedIndex, keyboardMode]);
 
   return (
     <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
-      <div ref={containerRef} className="diceContainer" tabIndex = {0}>
+      <div ref={containerRef} className="diceContainer" tabIndex={0}>
         {dice.map((die, index) => (
           <Die
             key={die.id}
-            ref={(el) => (dieRefs.current[index]=el)}
+            ref={(el) => (dieRefs.current[index] = el)}
             value={die.value}
             held={die.held}
             onClick={() => {
               toggleHold(index);
               setKeyboardMode(false);
-              }
+            }
             }
             rolling={rolling}
-            isFocused={keyboardMode && index===focusedIndex}
+            isFocused={keyboardMode && index === focusedIndex}
           />
         )
         )
