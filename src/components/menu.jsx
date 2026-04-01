@@ -5,6 +5,7 @@ import backgroundmusic from '../assets/backgroundmusic.mp3'
 import endgamesound from '../assets/endgamesound.mp3'
 import SoundButton from './SoundButton.jsx'
 import { calculateGrandTotal } from '../utils/calculateScores'
+import confetti from "canvas-confetti"
 
 const StartGame = ({ setPlayers, playBgaudio }) => {
   const handleSetPlayers = (e) => {
@@ -77,12 +78,20 @@ const StartGame = ({ setPlayers, playBgaudio }) => {
 }
 
 const EndGame = ({ onEndGame, stopBgaudio, playEndgameaudio, winner }) => {
+  function winAnimation() {
+    confetti({
+      particleCount: 250,
+      spread: 80,
+      origin: { y: 0.6 },
+    })
+  }
+
   return (
     <div id="endgame">
       <SoundButton className="menuButton" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
         End game
       </SoundButton>
-      <div className="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+      <div className="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex={-1}>
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
@@ -97,6 +106,7 @@ const EndGame = ({ onEndGame, stopBgaudio, playEndgameaudio, winner }) => {
                 onClick={() => {
                   stopBgaudio()
                   playEndgameaudio()
+                  winAnimation()
                 }}
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModalToggle2"

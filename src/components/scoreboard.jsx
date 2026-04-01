@@ -1,5 +1,6 @@
 import { useState, Fragment } from "react"
 import { calculateUpperTotal, calculateBonus, calculateGrandTotal } from "../utils/calculateScores"
+import confetti from "canvas-confetti"
 
 
 const Scoreboard = ({ players, categories, scores, setScores }) => {
@@ -28,6 +29,10 @@ const Scoreboard = ({ players, categories, scores, setScores }) => {
 
     newScores[category][playerIndex] = points
     setScores(newScores)
+
+    if (category === "Yatzy" && points === 50) {
+      miniConfetti()
+    }
     console.log(`Clicked on category: ${category}, player index: ${playerIndex}`)
     setEditingCell(null)
   }
@@ -49,6 +54,16 @@ const Scoreboard = ({ players, categories, scores, setScores }) => {
     }
 
     return scores[category]?.[playerIndex] ?? ""
+  }
+
+  // launches small confetti when player scores a Yatzy
+  function miniConfetti() {
+    confetti({
+      particleCount: 50,
+      spread: 70,
+      scalar: 0.8,
+      origin: { y: 0.9, x: 0.25 }
+    })
   }
 
 
