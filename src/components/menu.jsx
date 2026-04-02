@@ -6,8 +6,9 @@ import endgamesound from '../assets/endgamesound.mp3'
 import SoundButton from './SoundButton.jsx'
 import { calculateGrandTotal } from '../utils/calculateScores'
 import confetti from "canvas-confetti"
+import { motion } from 'framer-motion'
 
-const StartGame = ({ gameOngoing, setGameOngoing, setPlayers }) => {
+const StartGame = ({ gameOngoing, setPlayers }) => {
   const [formPlayers, setFormPlayers] = useState(["", "", "", ""]) // local state to manage form inputs
 
   const handleSetPlayers = (e) => {
@@ -22,7 +23,6 @@ const StartGame = ({ gameOngoing, setGameOngoing, setPlayers }) => {
 
     setPlayers(players)
     console.log(players)
-    setGameOngoing(true)
     setFormPlayers(["", "", "", ""])
   }
 
@@ -34,7 +34,27 @@ const StartGame = ({ gameOngoing, setGameOngoing, setPlayers }) => {
 
   return (
     <div id="startgame">
-      <SoundButton disabled={gameOngoing} className="menuButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Start game</SoundButton>
+      <motion.div
+        animate={
+          !gameOngoing
+            ? { scale: [1, 1.20, 1] }
+            : {}
+        }
+        transition={{
+          duration: 1.5,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      >
+        <SoundButton
+          disabled={gameOngoing}
+          className="menuButton"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+        >
+          Start game
+        </SoundButton>
+      </motion.div>
       <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
@@ -79,7 +99,7 @@ const StartGame = ({ gameOngoing, setGameOngoing, setPlayers }) => {
   )
 }
 
-const EndGame = ({ gameOngoing, setGameOngoing, onEndGame, playEndgameaudio, winner }) => {
+const EndGame = ({ gameOngoing, onEndGame, playEndgameaudio, winner }) => {
   function winAnimation() {
     confetti({
       particleCount: 250,
@@ -105,7 +125,7 @@ const EndGame = ({ gameOngoing, setGameOngoing, onEndGame, playEndgameaudio, win
               <p>Are you ready to end the game and save the results?</p>
               <SoundButton
                 className="btn btn-primary"
-                onClick={() => { playEndgameaudio(), winAnimation(), setGameOngoing(false) }}
+                onClick={() => { playEndgameaudio(), winAnimation()}}
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModalToggle2"
               >
@@ -171,8 +191,7 @@ const OpenLeaderboard = () => {
   )
 }
 
-const Menu = ({ setPlayers, onEndGame, players, scores }) => {
-  const [gameOngoing, setGameOngoing] = useState(false)
+const Menu = ({ setPlayers, onEndGame, gameOngoing, players, scores }) => {
   const endGameAudioRef = useRef(new Audio(endgamesound))
 
   useEffect(() => {
@@ -211,8 +230,8 @@ const Menu = ({ setPlayers, onEndGame, players, scores }) => {
     <div className="menu">
       <h1 id="yatzy">Yatzy</h1>
       <div className="menu">
-        <StartGame gameOngoing={gameOngoing} setGameOngoing={setGameOngoing} setPlayers={setPlayers} />
-        <EndGame gameOngoing={gameOngoing} setGameOngoing={setGameOngoing} onEndGame={onEndGame} playEndgameaudio={playEndgameaudio}
+        <StartGame gameOngoing={gameOngoing} setPlayers={setPlayers} />
+        <EndGame gameOngoing={gameOngoing} onEndGame={onEndGame} playEndgameaudio={playEndgameaudio}
           winner={winner} />
         <OpenLeaderboard />
       </div>

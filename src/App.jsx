@@ -19,7 +19,7 @@ const App = () => {
 
   const [players, setPlayers] = useState(() => {
     const saved = localStorage.getItem("yatzyGame")
-    return saved ? JSON.parse(saved).players : ["Player 1", "Player 2", "Player 3", "Player 4"]
+    return saved ? JSON.parse(saved).players : ["", "", "", ""]
   })
   const [scores, setScores] = useState(() => {
     const saved = localStorage.getItem("yatzyGame")
@@ -27,6 +27,7 @@ const App = () => {
   })
   const diceRef = useRef()
 
+  const gameOngoing = players.some(p => p && p.trim() !== "")
 
   useEffect(() => {
     throwSoundRef.current.volume = 1 // volume adjustment for dice throw sound
@@ -73,7 +74,7 @@ const App = () => {
   const handleEndGame = () => {
     saveToLeaderboard()
     setScores({})
-    setPlayers(["Player 1", "Player 2", "Player 3", "Player 4"])
+    setPlayers(["", "", "", ""])
     localStorage.removeItem("yatzyGame")
   }
 
@@ -136,10 +137,12 @@ const App = () => {
       <Menu
         setPlayers={setPlayers}
         onEndGame={handleEndGame}
+        gameOngoing={gameOngoing}
         players={players}
         scores={scores}
       />
       <div className="gameArea">
+        {!gameOngoing && <div className="overlay" />}
         <div className="scoreboard">
           <Scoreboard
             players={players}
