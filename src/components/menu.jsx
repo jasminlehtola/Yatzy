@@ -7,7 +7,7 @@ import SoundButton from './SoundButton.jsx'
 import { calculateGrandTotal } from '../utils/calculateScores'
 import confetti from "canvas-confetti"
 
-const StartGame = ({ setPlayers }) => {
+const StartGame = ({ gameOngoing, setGameOngoing, setPlayers }) => {
   const handleSetPlayers = (e) => {
     e.preventDefault()
 
@@ -22,11 +22,12 @@ const StartGame = ({ setPlayers }) => {
 
     setPlayers(players)
     console.log(players)
+    setGameOngoing(true)
   }
 
   return (
     <div id="startgame">
-      <SoundButton className="menuButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      <SoundButton disabled={gameOngoing} className="menuButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
         Start game
       </SoundButton>
       <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -60,13 +61,11 @@ const StartGame = ({ setPlayers }) => {
                 <div className="mb-3 row">
                   <label htmlFor="player4" className="col-sm-2 col-form-label">Player 4</label>
                   <div className="col-sm-7">
-                    <input className="form-control" name="player4" type="text" placeholder="Set Player 4's name" disabled />
+                    <input className="form-control" name="player4" type="text" placeholder="Set Player 4's name" />
                   </div>
                 </div>
-                <SoundButton onClick={handleSetPlayers} type="button" className="btn btn-primary" data-bs-dismiss="modal">
-                  Start game
-                </SoundButton>
               </form>
+              <SoundButton onClick={handleSetPlayers} type="button" className="btn btn-primary" data-bs-dismiss="modal">Start game</SoundButton>
             </div>
           </div>
         </div>
@@ -75,7 +74,7 @@ const StartGame = ({ setPlayers }) => {
   )
 }
 
-const EndGame = ({ onEndGame, playEndgameaudio, winner }) => {
+const EndGame = ({ gameOngoing, setGameOngoing, onEndGame, playEndgameaudio, winner }) => {
   function winAnimation() {
     confetti({
       particleCount: 250,
@@ -86,7 +85,7 @@ const EndGame = ({ onEndGame, playEndgameaudio, winner }) => {
 
   return (
     <div id="endgame">
-      <SoundButton className="menuButton" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+      <SoundButton disabled={!gameOngoing} className="menuButton" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
         End game
       </SoundButton>
       <div className="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex={-1}>
@@ -101,7 +100,7 @@ const EndGame = ({ onEndGame, playEndgameaudio, winner }) => {
               <p>Are you ready to end the game and save the results?</p>
               <SoundButton
                 className="btn btn-primary"
-                onClick={() => {playEndgameaudio(), winAnimation()}}
+                onClick={() => {playEndgameaudio(), winAnimation(), setGameOngoing(false)}}
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModalToggle2"
               >
@@ -168,7 +167,7 @@ const OpenLeaderboard = () => {
 }
 
 const Menu = ({ setPlayers, onEndGame, players, scores }) => {
-  const [gameOngoing, setGameOngoing] = useState(false) // Tällä pitäisi saada Start- ja End-nappulat disabled vuorollaan
+  const [gameOngoing, setGameOngoing] = useState(false)
   const endGameAudioRef = useRef(new Audio(endgamesound))
 
   useEffect(() => {
@@ -207,8 +206,8 @@ const Menu = ({ setPlayers, onEndGame, players, scores }) => {
     <div className="menu">
       <h1 id="yatzy">Yatzy</h1>
       <div className="menu">
-        <StartGame setPlayers={setPlayers} />
-        <EndGame onEndGame={onEndGame} playEndgameaudio={playEndgameaudio}
+        <StartGame gameOngoing={gameOngoing} setGameOngoing={setGameOngoing} setPlayers={setPlayers}/>
+        <EndGame gameOngoing={gameOngoing} setGameOngoing={setGameOngoing} onEndGame={onEndGame} playEndgameaudio={playEndgameaudio}
           winner={winner} />
         <OpenLeaderboard />
       </div>
