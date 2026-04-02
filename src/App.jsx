@@ -147,7 +147,6 @@ const App = () => {
         scores={scores}
       />
       <div className="gameArea">
-        {!gameOngoing && <div className="overlay" />}
         <div className="scoreboard">
           <Scoreboard
             players={players}

@@ -5,9 +5,13 @@ import backgroundmusic from '../assets/backgroundmusic.mp3'
 
 const Info = () => {
   useEffect(() => {
-    const modalElement = document.getElementById("infoModal")
-    const modal = new bootstrap.Modal(modalElement)
-    modal.show()
+    const shouldHide = localStorage.getItem("hideInfoModal")
+
+    if (!shouldHide) {
+      const modalElement = document.getElementById("infoModal")
+      const modal = new bootstrap.Modal(modalElement)
+      modal.show()
+    }
   }, [])
 
   const bgAudioRef = useRef(null)
@@ -30,7 +34,10 @@ const Info = () => {
         <div className="modal-content">
           <div className="modal-header">
             <h2 className="modal-title fs-5">Welcome to play Yatzy!</h2>
-            <SoundButton onClick={playBgaudio} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+            <SoundButton onClick={() => {
+              playBgaudio()
+              localStorage.setItem("hideInfoModal", "true")
+            }} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
           </div>
           <div className="modal-body">
             <p><strong>How to play Yatzy</strong></p>

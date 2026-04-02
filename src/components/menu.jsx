@@ -8,6 +8,18 @@ import { calculateGrandTotal } from '../utils/calculateScores'
 import confetti from "canvas-confetti"
 import { motion } from 'framer-motion'
 
+const Help = () => {
+  return (
+    <SoundButton
+      className="menuButton"
+      data-bs-toggle="modal"
+      data-bs-target="#infoModal"
+    >
+      ?
+    </SoundButton>
+  )
+}
+
 const StartGame = ({ gameOngoing, setPlayers }) => {
   const [formPlayers, setFormPlayers] = useState(["", "", "", ""]) // local state to manage form inputs
 
@@ -125,7 +137,7 @@ const EndGame = ({ gameOngoing, onEndGame, playEndgameaudio, winner }) => {
               <p>Are you ready to end the game and save the results?</p>
               <SoundButton
                 className="btn btn-primary"
-                onClick={() => { playEndgameaudio(), winAnimation()}}
+                onClick={() => { playEndgameaudio(), winAnimation() }}
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModalToggle2"
               >
@@ -230,6 +242,7 @@ const Menu = ({ setPlayers, onEndGame, gameOngoing, players, scores }) => {
     <div className="menu">
       <h1 id="yatzy">Yatzy</h1>
       <div className="menu">
+        <Help />
         <StartGame gameOngoing={gameOngoing} setPlayers={setPlayers} />
         <EndGame gameOngoing={gameOngoing} onEndGame={onEndGame} playEndgameaudio={playEndgameaudio}
           winner={winner} />
