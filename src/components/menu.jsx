@@ -8,27 +8,34 @@ import { calculateGrandTotal } from '../utils/calculateScores'
 import confetti from "canvas-confetti"
 
 const StartGame = ({ gameOngoing, setGameOngoing, setPlayers }) => {
+  const [formPlayers, setFormPlayers] = useState(["", "", "", ""]) // local state to manage form inputs
+
   const handleSetPlayers = (e) => {
     e.preventDefault()
 
-    const formData = new FormData(document.getElementById("playerForm"))
-
     const players = [
-      formData.get("player1"),
-      formData.get("player2"),
-      formData.get("player3"),
-      formData.get("player4")
+      formPlayers[0],
+      formPlayers[1],
+      formPlayers[2],
+      formPlayers[3]
     ]
 
     setPlayers(players)
     console.log(players)
     setGameOngoing(true)
+    setFormPlayers(["", "", "", ""])
+  }
+
+  const handleChange = (index, value) => {
+    const updated = [...formPlayers]
+    updated[index] = value
+    setFormPlayers(updated)
   }
 
   return (
     <div id="startgame">
       <SoundButton disabled={gameOngoing} className="menuButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Start game</SoundButton>
-      <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
@@ -36,30 +43,30 @@ const StartGame = ({ gameOngoing, setGameOngoing, setPlayers }) => {
               <SoundButton type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
             </div>
             <div className="modal-body">
-              <p>Set 1-4 player names.</p>
-              <form key={gameOngoing ? "playing" : "new"} id="playerForm">
+              <p>Set 2-4 player names.</p>
+              <form key={gameOngoing ? "playing" : "new"}>
                 <div className="mb-3 row">
                   <label htmlFor="player1" className="col-sm-2 col-form-label">Player 1</label>
                   <div className="col-sm-7">
-                    <input className="form-control" name="player1" type="text" placeholder="Set Player 1's name" />
+                    <input className="form-control" name="player1" type="text" value={formPlayers[0]} onChange={(e) => handleChange(0, e.target.value)} placeholder="Set Player 1's name" />
                   </div>
                 </div>
                 <div className="mb-3 row">
                   <label htmlFor="player2" className="col-sm-2 col-form-label">Player 2</label>
                   <div className="col-sm-7">
-                    <input className="form-control" name="player2" type="text" placeholder="Set Player 2's name" />
+                    <input className="form-control" name="player2" type="text" value={formPlayers[1]} onChange={(e) => handleChange(1, e.target.value)} placeholder="Set Player 2's name" />
                   </div>
                 </div>
                 <div className="mb-3 row">
                   <label htmlFor="player3" className="col-sm-2 col-form-label">Player 3</label>
                   <div className="col-sm-7">
-                    <input className="form-control" name="player3" type="text" placeholder="Set Player 3's name" />
+                    <input className="form-control" name="player3" type="text" value={formPlayers[2]} onChange={(e) => handleChange(2, e.target.value)} placeholder="Set Player 3's name" disabled={!formPlayers[0] || !formPlayers[1]} />
                   </div>
                 </div>
                 <div className="mb-3 row">
                   <label htmlFor="player4" className="col-sm-2 col-form-label">Player 4</label>
                   <div className="col-sm-7">
-                    <input className="form-control" name="player4" type="text" placeholder="Set Player 4's name" />
+                    <input className="form-control" name="player4" type="text" value={formPlayers[3]} onChange={(e) => handleChange(3, e.target.value)} placeholder="Set Player 4's name" disabled={!formPlayers[2]} />
                   </div>
                 </div>
               </form>
@@ -108,7 +115,7 @@ const EndGame = ({ gameOngoing, setGameOngoing, onEndGame, playEndgameaudio, win
           </div>
         </div>
       </div>
-      <div className="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+      <div className="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex={-1}>
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
@@ -143,7 +150,7 @@ const OpenLeaderboard = () => {
       <SoundButton type="button" className="menuButton" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Leaderboard
       </SoundButton>
-      <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div className="modal fade" id="exampleModal" tabindex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">

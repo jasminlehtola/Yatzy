@@ -1,6 +1,4 @@
 // **PELILOGIIKKA**:
-// start game-formi pitää tyhjentyä aina kun sitä klikkaa
-
 // !!Formi pitää täyttää yksitellen järjestyksessä, muuten vuorologiikka ei oikein toimi
 
 // !!Peli ei ohjaa mitenkään painamaan New game-nappia, vaan sitä voi vaan alkaa pelaamaan myös ilman nimiä.
