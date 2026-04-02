@@ -14,7 +14,7 @@ npm run dev
 
 ## Contributions
 
-**Heidi Tuurala, 2213712:** Dice and the game logic associated with holding and throwing dice.
+**Heidi Tuurala:** Dice and the game logic associated with holding and throwing dice.
 
 **Janina Paasila:** Wireframe, layout, CSS formatting, menu.jsx, info.jsx, audio (partially)
 
