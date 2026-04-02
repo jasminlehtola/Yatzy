@@ -137,7 +137,7 @@ const Dice = forwardRef((_, ref) => {
   }, [focusedIndex, keyboardMode]);
 
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
+    <div style={{ fontFamily: "Arial, sans-serif" }}>
       <div ref={containerRef} className="diceContainer" tabIndex={0}>
         {dice.map((die, index) => (
           <Die

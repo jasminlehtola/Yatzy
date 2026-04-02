@@ -88,7 +88,7 @@ button:focus-visible {
 }
 
 .currentPlayer {
-  margin: 0px 0px 50px 0px;
+  margin: 0px 0px 20px 0px;
   font-size: 1.5em;
   font-weight: 500;
 }
@@ -120,7 +120,7 @@ button:focus-visible {
 }
 
 .diceContainer {
-  margin: 20px 0px 20px 0px;
+  margin: 10px 10px 5px 0px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -145,7 +145,7 @@ button:focus-visible {
 
 .game {
   width: 100%;
-  min-width: 990px;
+  min-width: 950px;
 }
 
 .gameArea {
@@ -154,14 +154,15 @@ button:focus-visible {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  margin: 20px;
-  gap: 20px;
+  padding: 20px 20px 20px 20px;
+  gap: 30px;
   position: relative;
 }
 
 .overlay {
   position: fixed;
-  top: 80px; /* menu height */
+  top: 80px;
+  /* menu height */
   left: 0;
   right: 0;
   bottom: 0;
@@ -214,8 +215,8 @@ button:focus-visible {
   padding: 5px;
   border: 1px solid #ffffff;
   text-align: center;
-  min-width: 80px;
-  max-height: 30px;
+  min-width: 70px;
+  max-height: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -243,6 +244,7 @@ button:focus-visible {
 
 .cell.calculated {
   font-weight: bold;
+  font-size: 16px;
   background-color: #adadad;
 }
 
