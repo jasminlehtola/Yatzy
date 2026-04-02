@@ -10,6 +10,7 @@ import Menu from './components/menu.jsx'
 import categories from './data/categories'
 import { calculateGrandTotal } from './utils/calculateScores'
 import SoundButton from './components/SoundButton.jsx'
+import Info from './components/info.jsx'
 
 const App = () => {
   const throwSoundRef = useRef(new Audio(diceThrowSound))
@@ -131,6 +132,7 @@ const App = () => {
 
   return (
     <div className="game" id="game">
+      <Info />
       <Menu
         setPlayers={setPlayers}
         onEndGame={handleEndGame}

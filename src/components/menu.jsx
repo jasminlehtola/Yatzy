@@ -7,7 +7,7 @@ import SoundButton from './SoundButton.jsx'
 import { calculateGrandTotal } from '../utils/calculateScores'
 import confetti from "canvas-confetti"
 
-const StartGame = ({ setPlayers, playBgaudio }) => {
+const StartGame = ({ setPlayers }) => {
   const handleSetPlayers = (e) => {
     e.preventDefault()
 
@@ -22,7 +22,6 @@ const StartGame = ({ setPlayers, playBgaudio }) => {
 
     setPlayers(players)
     console.log(players)
-    playBgaudio()
   }
 
   return (
@@ -35,8 +34,7 @@ const StartGame = ({ setPlayers, playBgaudio }) => {
           <div className="modal-content">
             <div className="modal-header">
               <h2 className="modal-title fs-5">Set players</h2>
-              <SoundButton onClick={playBgaudio} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close">
-              </SoundButton>
+              <SoundButton type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
             </div>
             <div className="modal-body">
               <p>Set 1-4 player names.</p>
@@ -77,7 +75,7 @@ const StartGame = ({ setPlayers, playBgaudio }) => {
   )
 }
 
-const EndGame = ({ onEndGame, stopBgaudio, playEndgameaudio, winner }) => {
+const EndGame = ({ onEndGame, playEndgameaudio, winner }) => {
   function winAnimation() {
     confetti({
       particleCount: 250,
@@ -103,11 +101,7 @@ const EndGame = ({ onEndGame, stopBgaudio, playEndgameaudio, winner }) => {
               <p>Are you ready to end the game and save the results?</p>
               <SoundButton
                 className="btn btn-primary"
-                onClick={() => {
-                  stopBgaudio()
-                  playEndgameaudio()
-                  winAnimation()
-                }}
+                onClick={() => {playEndgameaudio(), winAnimation()}}
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModalToggle2"
               >
@@ -175,33 +169,11 @@ const OpenLeaderboard = () => {
 
 const Menu = ({ setPlayers, onEndGame, players, scores }) => {
   const [gameOngoing, setGameOngoing] = useState(false) // Tällä pitäisi saada Start- ja End-nappulat disabled vuorollaan
-  const bgAudioRef = useRef(null)
   const endGameAudioRef = useRef(new Audio(endgamesound))
-
-  useEffect(() => {
-    bgAudioRef.current = new Audio(backgroundmusic)
-    bgAudioRef.current.volume = 0.4 // volume adjustment for background music
-    bgAudioRef.current.loop = true
-  }, [])
 
   useEffect(() => {
     endGameAudioRef.current.volume = 0.2 // volume adjustment for end game sound
   }, [])
-
-  const playBgaudio = () => {
-    const audio = bgAudioRef.current
-    if (!audio || !audio.paused) return
-    audio.currentTime = 0
-    audio.play()
-    console.log("playing bg audio", bgAudioRef.current)
-  }
-
-  const stopBgaudio = () => {
-    const audio = bgAudioRef.current
-    if (!audio) return
-    audio.pause()
-    audio.currentTime = 0
-  }
 
   const playEndgameaudio = () => {
     const audio = endGameAudioRef.current
@@ -235,8 +207,8 @@ const Menu = ({ setPlayers, onEndGame, players, scores }) => {
     <div className="menu">
       <h1 id="yatzy">Yatzy</h1>
       <div className="menu">
-        <StartGame setPlayers={setPlayers} playBgaudio={playBgaudio} />
-        <EndGame onEndGame={onEndGame} stopBgaudio={stopBgaudio} playEndgameaudio={playEndgameaudio}
+        <StartGame setPlayers={setPlayers} />
+        <EndGame onEndGame={onEndGame} playEndgameaudio={playEndgameaudio}
           winner={winner} />
         <OpenLeaderboard />
       </div>
