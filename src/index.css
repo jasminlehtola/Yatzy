@@ -161,8 +161,7 @@ button:focus-visible {
 
 .overlay {
   position: fixed;
-  top: 80px;
-  /* menu height */
+  top: 80px; /* menu height */
   left: 0;
   right: 0;
   bottom: 0;

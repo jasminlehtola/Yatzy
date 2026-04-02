@@ -15,7 +15,10 @@ import Info from './components/info.jsx'
 const App = () => {
   const throwSoundRef = useRef(new Audio(diceThrowSound))
   const clickSoundRef = useRef(new Audio(buttonclick))
-  const [currentPlayer, setCurrentPlayer] = useState(0)
+  const [currentPlayer, setCurrentPlayer] = useState(() => {
+    const saved = localStorage.getItem("yatzyGame")
+    return saved ? JSON.parse(saved).currentPlayer ?? 0 : 0
+  })
 
   const [players, setPlayers] = useState(() => {
     const saved = localStorage.getItem("yatzyGame")
@@ -37,16 +40,17 @@ const App = () => {
     clickSoundRef.current.volume = 0.3 // volume adjustment for button click sound
   }, [])
 
-  // Saves to localStorage everytime when players or scores change
+  // Saves to localStorage everytime when players, scores or turn changes
   useEffect(() => {
     const data = {
       players,
-      scores
+      scores,
+      currentPlayer
     }
 
     localStorage.setItem("yatzyGame", JSON.stringify(data))
     console.log("Game state saved to localStorage.")
-  }, [players, scores])
+  }, [players, scores, currentPlayer])
 
 
   // Saves the current game result to the leaderboard in localStorage
@@ -75,6 +79,7 @@ const App = () => {
     saveToLeaderboard()
     setScores({})
     setPlayers(["", "", "", ""])
+    setCurrentPlayer(0)
     localStorage.removeItem("yatzyGame")
   }
 
