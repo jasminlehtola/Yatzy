@@ -35,27 +35,29 @@ const Info = () => {
           <div className="modal-body">
             <p><strong>How to play Yatzy</strong></p>
             <p>Each player throws dice on their turn and try to get the best possible score on their scoreboard.
-                On 1st throw of the turn the player throws all 5 dice. You may rethrow your dice up to twice if you
-                want. On rethrows you can lock dice to keep them as they are or unlock them to rethrow them.</p>
+              On 1st throw of the turn the player throws all 5 dice. You may rethrow your dice up to twice if you
+              want. On rethrows you can lock dice to keep them as they are or unlock them to rethrow them.</p>
             <p>Record your score to whichever category you want once you are happy with your dice or when you have
-                thrown dice three times. If your thrown dice cannot give any score, you record 0 points to whichever
-                category you want and that is still free. Once score is set for a category, it cannot be changed.</p>
+              thrown dice three times. If your thrown dice cannot give any score, you record 0 points to whichever
+              category you want and that is still free. Once score is set for a category, it cannot be changed.</p>
             <p>Game ends once each player has filled their scorecard. Player with the highest score wins.</p>
             <div class="alert alert-secondary">
-                <p><strong>Bonus:</strong> By scoring at least 61 points from the upper categories, you receive 50 bonus
-                    points.</p>
-                <p><strong>Small straight:</strong> 1-2-3-4-5 (15 points).</p>
-                <p><strong>Large straight:</strong> 2-3-4-5-6 (20 points).</p>
-                <p><strong>Chance:</strong> Any set of dice.</p>
-                <p><strong>Yatzy:</strong> Five same of any number (50 points).</p>
+              <p><strong>Bonus:</strong> By scoring at least 61 points from the upper categories, you receive 50 bonus
+                points.</p>
+              <p><strong>Small straight:</strong> 1-2-3-4-5 (15 points).</p>
+              <p><strong>Large straight:</strong> 2-3-4-5-6 (20 points).</p>
+              <p><strong>Chance:</strong> Any set of dice.</p>
+              <p><strong>Yatzy:</strong> Five same of any number (50 points).</p>
             </div>
             <p><strong>Controls</strong></p>
             <p>Start your game from the top right. Insert 1-4 player names and you're ready to play. Throw your dice
-                by pressing "Throw" or with <span class="badge text-bg-secondary">spacebar</span>. You can lock and
-                unlock the dice by clicking them with your mouse. End turn by pressing the button or with
-                <span class="badge text-bg-secondary">E</span> from keyboard.</p>
-            <p>Remember to mark your score in the scorecard at the end of your turn. When you are ready to finish your
-                game, press "End game" from top right. You can check the leaderboard from top right as well.</p>
+              by pressing "Throw" or with <span class="badge text-bg-secondary">spacebar</span>. You can lock and
+              unlock the dice by clicking them with your mouse. End turn by pressing the button or with
+              <span class="badge text-bg-secondary">E</span> from keyboard.</p>
+            <p>Remember to mark your score in the scorecard at the end of your turn. If you accidentally entered the
+              wrong value, you can edit it by double-clicking the cell.</p>
+            <p>When you are ready to finish your
+              game, press "End game" from top right. You can check the leaderboard from top right as well.</p>
           </div>
         </div>
       </div>
