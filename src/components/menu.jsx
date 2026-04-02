@@ -27,9 +27,7 @@ const StartGame = ({ gameOngoing, setGameOngoing, setPlayers }) => {
 
   return (
     <div id="startgame">
-      <SoundButton disabled={gameOngoing} className="menuButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        Start game
-      </SoundButton>
+      <SoundButton disabled={gameOngoing} className="menuButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Start game</SoundButton>
       <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
