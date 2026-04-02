@@ -37,7 +37,7 @@ const StartGame = ({ gameOngoing, setGameOngoing, setPlayers }) => {
             </div>
             <div className="modal-body">
               <p>Set 1-4 player names.</p>
-              <form id="playerForm">
+              <form key={gameOngoing ? "playing" : "new"} id="playerForm">
                 <div className="mb-3 row">
                   <label htmlFor="player1" className="col-sm-2 col-form-label">Player 1</label>
                   <div className="col-sm-7">
@@ -98,7 +98,7 @@ const EndGame = ({ gameOngoing, setGameOngoing, onEndGame, playEndgameaudio, win
               <p>Are you ready to end the game and save the results?</p>
               <SoundButton
                 className="btn btn-primary"
-                onClick={() => {playEndgameaudio(), winAnimation(), setGameOngoing(false)}}
+                onClick={() => { playEndgameaudio(), winAnimation(), setGameOngoing(false) }}
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModalToggle2"
               >
@@ -204,7 +204,7 @@ const Menu = ({ setPlayers, onEndGame, players, scores }) => {
     <div className="menu">
       <h1 id="yatzy">Yatzy</h1>
       <div className="menu">
-        <StartGame gameOngoing={gameOngoing} setGameOngoing={setGameOngoing} setPlayers={setPlayers}/>
+        <StartGame gameOngoing={gameOngoing} setGameOngoing={setGameOngoing} setPlayers={setPlayers} />
         <EndGame gameOngoing={gameOngoing} setGameOngoing={setGameOngoing} onEndGame={onEndGame} playEndgameaudio={playEndgameaudio}
           winner={winner} />
         <OpenLeaderboard />
