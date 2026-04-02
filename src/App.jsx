@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import './index.css'
 import * as bootstrap from 'bootstrap'
+import { motion, AnimatePresence } from "framer-motion"
 import buttonclick from './assets/buttonclick.mp3'
 import diceThrowSound from './assets/diceThrowSound.mp3'
 import Dice from './components/diceRoll.jsx'
@@ -149,9 +150,21 @@ const App = () => {
         </div>
 
         <div className="diceArea">
-          <p className="currentPlayer">
-            Turn: <strong>{players[currentPlayer]}</strong>
-          </p>
+          <div className="currentPlayer">
+            Turn:{" "}
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={currentPlayer}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.25 }}
+                style={{ display: "inline-block" }}
+              >
+                <strong>{players[currentPlayer]}</strong>
+              </motion.span>
+            </AnimatePresence>
+          </div>
           <div className="throwButton">
             <SoundButton onClick={handleThrow} id="throwButton" > Throw (Space) </SoundButton>
           </div>
