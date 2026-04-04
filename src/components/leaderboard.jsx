@@ -4,7 +4,7 @@ const Leaderboard = () => {
 
     return (
         <div>
-            <p>Showing top 5 best results:</p>
+            <p>Showing top 10 best results:</p>
             {leaderboard.length === 0 ? (
                 <p>No results yet</p>
             ) : (

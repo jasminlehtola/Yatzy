@@ -57,7 +57,7 @@ const Info = () => {
               <p><strong>Yatzy:</strong> Five same of any number (50 points).</p>
             </div>
             <p><strong>Controls</strong></p>
-            <p>Start your game from the top right. Insert 2-4 player names and you're ready to play. Throw your dice
+            <p>Start your game from the top right. Insert 1-4 player names and you're ready to play. Throw your dice
               by pressing "Throw" or with <span class="badge text-bg-secondary">spacebar</span>. You can lock and
               unlock the dice by clicking them with your mouse. End turn by pressing the button or with
               <span class="badge text-bg-secondary">E</span> from keyboard.</p>

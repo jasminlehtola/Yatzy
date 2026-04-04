@@ -74,7 +74,7 @@ const StartGame = ({ gameOngoing, setPlayers }) => {
               <SoundButton type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
             </div>
             <div className="modal-body">
-              <p>Set 2-4 player names.</p>
+              <p>Set 1-4 player names.</p>
               <form key={gameOngoing ? "playing" : "new"}>
                 <div className="mb-3 row">
                   <label htmlFor="player1" className="col-sm-2 col-form-label">Player 1</label>
@@ -85,13 +85,13 @@ const StartGame = ({ gameOngoing, setPlayers }) => {
                 <div className="mb-3 row">
                   <label htmlFor="player2" className="col-sm-2 col-form-label">Player 2</label>
                   <div className="col-sm-7">
-                    <input className="form-control" name="player2" type="text" value={formPlayers[1]} onChange={(e) => handleChange(1, e.target.value)} placeholder="Set Player 2's name" />
+                    <input className="form-control" name="player2" type="text" value={formPlayers[1]} onChange={(e) => handleChange(1, e.target.value)} placeholder="Set Player 2's name" disabled={!formPlayers[0]} />
                   </div>
                 </div>
                 <div className="mb-3 row">
                   <label htmlFor="player3" className="col-sm-2 col-form-label">Player 3</label>
                   <div className="col-sm-7">
-                    <input className="form-control" name="player3" type="text" value={formPlayers[2]} onChange={(e) => handleChange(2, e.target.value)} placeholder="Set Player 3's name" disabled={!formPlayers[0] || !formPlayers[1]} />
+                    <input className="form-control" name="player3" type="text" value={formPlayers[2]} onChange={(e) => handleChange(2, e.target.value)} placeholder="Set Player 3's name" disabled={!formPlayers[1]} />
                   </div>
                 </div>
                 <div className="mb-3 row">
@@ -246,7 +246,7 @@ const Menu = ({ setPlayers, onEndGame, gameOngoing, players, scores }) => {
             key={index}
             animate={{
               y: [0, -2, 0],
-              scale: [1, 1.06, 1]
+              scale: [1, 1.08, 1]
             }}
             transition={{
               duration: 0.6,
