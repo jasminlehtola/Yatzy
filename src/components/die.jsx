@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import dice1 from '../assets/dice-six-faces-one.png';
 import dice2 from '../assets/dice-six-faces-two.png';
@@ -8,26 +7,6 @@ import dice5 from '../assets/dice-six-faces-five.png';
 import dice6 from '../assets/dice-six-faces-six.png'
 
 const diceImages = [null, dice1, dice2, dice3, dice4, dice5, dice6];
-
-/*const Dice = () => {
-
-  const silmaluvut = Array.of(2,3,5,4,2);
-
-  const nopat = silmaluvut.map((e,idx) => <Die key={idx} value={e} />)
-  return (
-    <div className='diceContainer'>
-      {nopat}
-    </div>
-  )
-}
-
-const Die = (props) => {
-
-  return (
-    <p>The dice value: {props.diceValue}</p>
-  )
-
-}*/
 
 function Die({ value, held, onClick, rolling, isFocused = false }) {
   let dice = dice1
