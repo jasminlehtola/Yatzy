@@ -96,6 +96,8 @@ const App = () => {
   }
 
   const handleEndTurn = () => {
+    if (!activePlayers.length) return
+
     if (diceRef.current) {
       diceRef.current.reset()          // resets throws and dice
     }
