@@ -240,8 +240,29 @@ const Menu = ({ setPlayers, onEndGame, gameOngoing, players, scores }) => {
 
   return (
     <div className="menu">
-      <h1 id="yatzy">Yatzy</h1>
-      <div className="menu">
+      <motion.div
+        className="menu-bg"
+        animate={{
+          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      <motion.div
+        className="menu-shimmer"
+        animate={{ x: ["-100%", "100%"] }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+      />
+
+      <h1 className="yatzy">Yatzy</h1>
+      <div className="menu-content">
         <Help />
         <StartGame gameOngoing={gameOngoing} setPlayers={setPlayers} />
         <EndGame gameOngoing={gameOngoing} onEndGame={onEndGame} playEndgameaudio={playEndgameaudio}
@@ -253,3 +274,4 @@ const Menu = ({ setPlayers, onEndGame, gameOngoing, players, scores }) => {
 }
 
 export default Menu
+

@@ -33,12 +33,24 @@ h1 {
   line-height: 1.1;
 }
 
-#yatzy {
+.yatzy {
   color: #ffffff;
   flex-basis: 400px;
   padding: 0px 20px;
+  position: relative;
+  z-index: 2;
 }
 
+.currentPlayer {
+  margin: 0px 0px 20px 0px;
+  font-size: 1.5em;
+  font-weight: 500;
+}
+
+
+/* -----------------------------------------
+* Buttons
+---------------------------------------------*/
 button {
   border-radius: 8px;
   border: 2px solid transparent;
@@ -87,12 +99,10 @@ button:focus-visible {
   color: #ffffff;
 }
 
-.currentPlayer {
-  margin: 0px 0px 20px 0px;
-  font-size: 1.5em;
-  font-weight: 500;
-}
 
+/* -----------------------------------------
+* Dice and game area styles
+---------------------------------------------*/
 .diceArea {
   display: flex;
   flex-direction: column;
@@ -101,12 +111,11 @@ button:focus-visible {
   width: 100%;
 }
 
-
 .die {
   transition: transform 0.12s;
   cursor: pointer;
-  width: 120px;
-  height: 120px;
+  width: 110px;
+  height: 110px;
 }
 
 .die.held {
@@ -124,7 +133,7 @@ button:focus-visible {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 22px;
+  gap: 23px;
   flex-wrap: wrap;
   outline: none
 }
@@ -159,21 +168,53 @@ button:focus-visible {
   position: relative;
 }
 
+/* -----------------------------------------
+* Menu styles with animated background and shimmer effect
+---------------------------------------------*/
 .menu {
-  width: 100%;
-  height: 80px;
+  position: relative;
+  overflow: hidden;
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  width: 100%;
+  flex-wrap: nowrap;
   background-color: MediumSeaGreen;
 }
 
-.scoreboard {
-  flex-basis: 800px;
-  width: 100%;
-  background-color: #dddddd;
+.menu-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(-45deg,
+      #34b16c,
+      #2b8e56,
+      #63c591,
+      #3cb371);
+  background-size: 400% 400%;
 }
+
+.menu-shimmer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(120deg,
+      transparent 40%,
+      rgba(248, 253, 250, 0.15),
+      transparent 60%);
+}
+
+.menu-content {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+
+
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -194,6 +235,12 @@ button:focus-visible {
 /* -----------------------------------------
 * Custom styles for the scoreboard component 
 ---------------------------------------------*/
+.scoreboard {
+  flex-basis: 800px;
+  width: 100%;
+  background-color: #dddddd;
+}
+
 .grid-table {
   display: grid;
   grid-template-columns: 2fr repeat(4, 1fr);

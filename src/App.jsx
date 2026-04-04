@@ -146,6 +146,7 @@ const App = () => {
         players={players}
         scores={scores}
       />
+
       <div className="gameArea">
         <div className="scoreboard">
           <Scoreboard
