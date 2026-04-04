@@ -18,4 +18,4 @@ npm run dev
 
 **Janina Paasila:** Wireframe, layout, CSS formatting, menu.jsx, info.jsx, audio (partially)
 
-**Jasmin Lehtola:**
+**Jasmin Lehtola:** Scoreboard and score calculating logic, leaderboard, animations, soundButton
