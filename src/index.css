@@ -37,8 +37,6 @@ h1 {
   color: #ffffff;
   flex-basis: 400px;
   padding: 0px 20px;
-  position: relative;
-  z-index: 2;
 }
 
 .currentPlayer {
@@ -169,50 +167,17 @@ button:focus-visible {
 }
 
 /* -----------------------------------------
-* Menu styles with animated background and shimmer effect
+* Menu style
 ---------------------------------------------*/
 .menu {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 80px;
   width: 100%;
+  height: 80px;
+  display: flex;
   flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
   background-color: MediumSeaGreen;
 }
-
-.menu-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: linear-gradient(-45deg,
-      #34b16c,
-      #2b8e56,
-      #63c591,
-      #3cb371);
-  background-size: 400% 400%;
-}
-
-.menu-shimmer {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(120deg,
-      transparent 40%,
-      rgba(248, 253, 250, 0.15),
-      transparent 60%);
-}
-
-.menu-content {
-  display: flex;
-  align-items: center;
-  position: relative;
-  z-index: 2;
-}
-
 
 
 
@@ -287,4 +252,19 @@ button:focus-visible {
   background-color: #8b8989;
   color: #8b8989;
   pointer-events: none;
+}
+
+
+.modal {
+  position: fixed !important;
+  z-index: 2000 !important;
+}
+
+.modal-backdrop {
+  position: fixed !important;
+  z-index: 1990 !important;
+}
+
+.modal-dialog {
+  pointer-events: auto;
 }

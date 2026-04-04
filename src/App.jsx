@@ -53,6 +53,7 @@ const App = () => {
   }, [players, scores, currentPlayer])
 
 
+
   // Saves the current game result to the leaderboard in localStorage
   const saveToLeaderboard = () => {
     const saved = localStorage.getItem("yatzyLeaderboard")

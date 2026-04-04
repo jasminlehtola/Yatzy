@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import '../index.css'
 import Leaderboard from './leaderboard'
-import backgroundmusic from '../assets/backgroundmusic.mp3'
 import endgamesound from '../assets/endgamesound.mp3'
 import SoundButton from './SoundButton.jsx'
 import { calculateGrandTotal } from '../utils/calculateScores'
@@ -137,6 +136,7 @@ const EndGame = ({ gameOngoing, onEndGame, playEndgameaudio, winner }) => {
               <p>Are you ready to end the game and save the results?</p>
               <SoundButton
                 className="btn btn-primary"
+                data-bs-dismiss="modal"
                 onClick={() => { playEndgameaudio(), winAnimation() }}
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModalToggle2"
@@ -236,40 +236,39 @@ const Menu = ({ setPlayers, onEndGame, gameOngoing, players, scores }) => {
   }
 
   const winner = getWinner()
-
+  const letters = "Yatzy".split("") // for animation
 
   return (
     <div className="menu">
-      <motion.div
-        className="menu-bg"
-        animate={{
-          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div
-        className="menu-shimmer"
-        animate={{ x: ["-100%", "100%"] }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-      />
-
-      <h1 className="yatzy">Yatzy</h1>
-      <div className="menu-content">
+      <motion.h1 className="yatzy" style={{ display: "flex" }}>
+        {letters.map((letter, index) => (
+          <motion.span
+            key={index}
+            animate={{
+              y: [0, -2, 0],
+              scale: [1, 1.06, 1]
+            }}
+            transition={{
+              duration: 0.6,
+              ease: "easeInOut",
+              repeat: Infinity,
+              repeatDelay: 6,
+              delay: index * 0.12
+            }}
+            style={{ display: "inline-block" }}
+          >
+            {letter}
+          </motion.span>
+        ))}
+      </motion.h1>
+      <div className="menu">
         <Help />
         <StartGame gameOngoing={gameOngoing} setPlayers={setPlayers} />
         <EndGame gameOngoing={gameOngoing} onEndGame={onEndGame} playEndgameaudio={playEndgameaudio}
           winner={winner} />
         <OpenLeaderboard />
       </div>
-    </div>
+    </div >
   )
 }
 
